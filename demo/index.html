@@ -241,7 +241,6 @@ async function init() {
   b.textContent = META.mode === 'live' ? 'JEV LIVE' : 'MOCK SCORER';
   b.className = 'badge ' + META.mode;
   b.title = META.mode === 'live' ? 'Scoring with the Jev API' : 'Keyword mock — set JEV_API_URL in demo/.env for real Jev scoring';
-  if (META.storage_ephemeral) b.insertAdjacentHTML('afterend', '<span class="badge mock" title="Running on Vercel without Upstash Redis: profiles are kept in /tmp and will be lost. See demo/README.md.">DATA NOT SAVED</span>');
   await refreshChildren();
   const last = new URLSearchParams(location.search).get('child') || localGet('child');
   if (last && [...$('#childSel').options].some(o => o.value === last)) await loadChild(last);

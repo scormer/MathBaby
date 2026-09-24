@@ -7,9 +7,13 @@ const path = require('path');
 const { classifyMock } = require('./mock_jev');
 const { extractScores } = require('./jev_parse');
 const { replay, DEFAULT_PARAMS, PARAM_INFO, LEVELS, EMIT } = require('./belief');
-const { createStore } = require('./storage');
 
 const ROOT = path.resolve(__dirname, '..');
+const DATA = path.join(__dirname, 'data');
+const CHILD_DIR = path.join(DATA, 'children');
+const LOG_DIR = path.join(DATA, 'logs');
+fs.mkdirSync(CHILD_DIR, { recursive: true });
+fs.mkdirSync(LOG_DIR, { recursive: true });
 
 // ---------- config (.env in demo/, env vars win) ----------
 function loadEnv() {
@@ -31,7 +35,6 @@ const CFG = {
   timeoutMs: +(process.env.JEV_TIMEOUT_MS || 90000),
 };
 CFG.mode = process.env.JEV_MODE || (CFG.jevUrl ? 'live' : 'mock');
-const store = createStore(path.join(__dirname, 'data'));
 
 // ---------- ontology ----------
 const MODEL = JSON.parse(fs.readFileSync(path.join(ROOT, 'APP_Capability_Model_v0.1.json'), 'utf8'));
@@ -58,13 +61,19 @@ function recompute(child) {
 
 // ---------- storage ----------
 const slugify = name => name.trim().replace(/[\\/:*?"<>|\x00-\x1f]/g, '').replace(/\s+/g, '_').slice(0, 60);
-const readChild = slug => store.readChild(slug);
+const childFile = slug => path.join(CHILD_DIR, slug + '.json');
+const logFile = slug => path.join(LOG_DIR, slug + '.md');
+const readChild = slug => fs.existsSync(childFile(slug)) ? JSON.parse(fs.readFileSync(childFile(slug), 'utf8')) : null;
 function writeChild(child) {
   child.updated_at = new Date().toISOString();
-  return store.writeChild(child);
+  fs.writeFileSync(childFile(child.slug), JSON.stringify(child, null, 2));
 }
 const stamp = iso => iso.replace('T', ' ').slice(0, 19);
-const appendLog = (child, text) => store.appendLog(child.slug, `# Observation log — ${child.name}\n\n`, text);
+function appendLog(child, text) {
+  const f = logFile(child.slug);
+  if (!fs.existsSync(f)) fs.writeFileSync(f, `# Observation log — ${child.name}\n\n`);
+  fs.appendFileSync(f, text);
+}
 function logObservation(child, obs) {
   const ranked = CAP_IDS.map(id => [id, obs.scores[id]]).filter(([, s]) => s >= 0.05).sort((a, b) => b[1] - a[1]);
   let md = `## ${stamp(obs.datetime)} · obs \`${obs.id}\`\n\n`;
@@ -79,7 +88,7 @@ function logObservation(child, obs) {
     }
     md += '\n';
   }
-  return appendLog(child, md + '---\n\n');
+  appendLog(child, md + '---\n\n');
 }
 const pct = x => Math.round(x * 100) + '%';
 
@@ -119,10 +128,11 @@ async function readBody(req) {
   for await (const chunk of req) s += chunk;
   return s ? JSON.parse(s) : {};
 }
-async function listChildren() {
-  return (await store.listChildren())
-    .map(c => ({ name: c.name, slug: c.slug, age: c.age, observations: c.observations.length, updated_at: c.updated_at }))
-    .sort((a, b) => (b.updated_at || '').localeCompare(a.updated_at || ''));
+function listChildren() {
+  return fs.readdirSync(CHILD_DIR).filter(f => f.endsWith('.json')).map(f => {
+    const c = JSON.parse(fs.readFileSync(path.join(CHILD_DIR, f), 'utf8'));
+    return { name: c.name, slug: c.slug, age: c.age, observations: c.observations.length, updated_at: c.updated_at };
+  }).sort((a, b) => (b.updated_at || '').localeCompare(a.updated_at || ''));
 }
 const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
@@ -130,51 +140,50 @@ const routes = [
   ['GET', /^\/$/, () => [200, fs.readFileSync(path.join(__dirname, 'index.html')), 'text/html; charset=utf-8']],
   ['GET', /^\/api\/meta$/, () => [200, {
     capabilities: CAPS, mode: CFG.mode, jev_configured: !!CFG.jevUrl, default_params: DEFAULT_PARAMS,
-    storage: store.kind, storage_ephemeral: !!store.ephemeral,
     param_info: PARAM_INFO, levels: LEVELS, emit: EMIT,
     ontology_version: MODEL.version,
   }]],
   ['GET', /^\/api\/payload-preview$/, (req, m, url) =>
     [200, jevPayload(url.searchParams.get('text') || '<parent observation>', +url.searchParams.get('age') || undefined)]],
-  ['GET', /^\/api\/children$/, async () => [200, await listChildren()]],
+  ['GET', /^\/api\/children$/, () => [200, listChildren()]],
   ['POST', /^\/api\/children$/, async req => {
     const { name, age } = await readBody(req);
     if (!name || !name.trim()) return [400, { error: 'Name required' }];
     const slug = slugify(name);
     if (!slug) return [400, { error: 'Invalid name' }];
-    let child = await readChild(slug);
+    let child = readChild(slug);
     if (!child) {
       const now = new Date().toISOString();
       child = { name: name.trim(), slug, age: age ? +age : null, created_at: now, updated_at: now,
         ontology_version: MODEL.version, model_params: { ...DEFAULT_PARAMS },
         capabilities: {}, observations: [], adjustments: [] };
       recompute(child);
-      await writeChild(child);
-      await appendLog(child, `_Profile created ${stamp(now)} — all 43 capabilities at 0%._\n\n---\n\n`);
+      writeChild(child);
+      appendLog(child, `_Profile created ${stamp(now)} — all 43 capabilities at 0%._\n\n---\n\n`);
     }
     return [200, child];
   }],
-  ['GET', /^\/api\/children\/([^/]+)$/, async (req, m) => {
-    const child = await readChild(decodeURIComponent(m[1]));
+  ['GET', /^\/api\/children\/([^/]+)$/, (req, m) => {
+    const child = readChild(decodeURIComponent(m[1]));
     if (!child) return [404, { error: 'Not found' }];
     recompute(child);
     return [200, child];
   }],
   ['PATCH', /^\/api\/children\/([^/]+)$/, async (req, m) => {
-    const child = await readChild(decodeURIComponent(m[1]));
+    const child = readChild(decodeURIComponent(m[1]));
     if (!child) return [404, { error: 'Not found' }];
     const body = await readBody(req);
     if ('age' in body) child.age = body.age ? +body.age : null;
     if (body.model_params) {
       child.model_params = body.model_params === 'default' ? { ...DEFAULT_PARAMS } : body.model_params;
       recompute(child);
-      await appendLog(child, `_${stamp(new Date().toISOString())} — model params changed to ${JSON.stringify(child.model_params)}; profile replayed from history._\n\n---\n\n`);
+      appendLog(child, `_${stamp(new Date().toISOString())} — model params changed to ${JSON.stringify(child.model_params)}; profile replayed from history._\n\n---\n\n`);
     }
-    await writeChild(child);
+    writeChild(child);
     return [200, child];
   }],
   ['POST', /^\/api\/children\/([^/]+)\/observations$/, async (req, m) => {
-    const child = await readChild(decodeURIComponent(m[1]));
+    const child = readChild(decodeURIComponent(m[1]));
     if (!child) return [404, { error: 'Not found' }];
     const { text } = await readBody(req);
     if (!text || !text.trim()) return [400, { error: 'Observation text required' }];
@@ -185,24 +194,24 @@ const routes = [
       jev: { mode: result.mode, ms: result.ms }, scores: result.scores, raw: result.raw, expected: null };
     child.observations.push(obs);
     recompute(child);
-    await writeChild(child);
-    await logObservation(child, obs);
+    writeChild(child);
+    logObservation(child, obs);
     return [200, { child, observation_id: obs.id }];
   }],
-  ['DELETE', /^\/api\/children\/([^/]+)\/observations\/([^/]+)$/, async (req, m) => {
-    const child = await readChild(decodeURIComponent(m[1]));
+  ['DELETE', /^\/api\/children\/([^/]+)\/observations\/([^/]+)$/, (req, m) => {
+    const child = readChild(decodeURIComponent(m[1]));
     if (!child) return [404, { error: 'Not found' }];
     const obs = child.observations.find(o => o.id === m[2]);
     if (!obs) return [404, { error: 'Observation not found' }];
     child.observations = child.observations.filter(o => o !== obs);
     recompute(child);
-    await writeChild(child);
-    await appendLog(child, `_${stamp(new Date().toISOString())} — observation \`${obs.id}\` removed; profile replayed from history._\n\n---\n\n`);
+    writeChild(child);
+    appendLog(child, `_${stamp(new Date().toISOString())} — observation \`${obs.id}\` removed; profile replayed from history._\n\n---\n\n`);
     return [200, child];
   }],
   // Parent correction: set a capability's maturity directly (re-anchors the belief; later evidence continues from it).
   ['POST', /^\/api\/children\/([^/]+)\/adjustments$/, async (req, m) => {
-    const child = await readChild(decodeURIComponent(m[1]));
+    const child = readChild(decodeURIComponent(m[1]));
     if (!child) return [404, { error: 'Not found' }];
     const { capability_id, value, note } = await readBody(req);
     if (!CAP_BY_ID[capability_id]) return [400, { error: 'Unknown capability' }];
@@ -212,9 +221,9 @@ const routes = [
     const adj = { id: newId(), datetime: new Date().toISOString(), capability_id, value: v, note: note || '' };
     child.adjustments.push(adj);
     recompute(child);
-    await writeChild(child);
+    writeChild(child);
     const d = adj.deltas[capability_id];
-    await appendLog(child, `## ${stamp(adj.datetime)} · parent adjustment \`${adj.id}\`
+    appendLog(child, `## ${stamp(adj.datetime)} · parent adjustment \`${adj.id}\`
 
 ` +
       `**${capability_id} ${CAP_BY_ID[capability_id].name}** set to ${pct(v)} (was ${pct(d.before)}, now ${pct(d.after)})` +
@@ -225,15 +234,15 @@ const routes = [
 `);
     return [200, child];
   }],
-  ['DELETE', /^\/api\/children\/([^/]+)\/adjustments\/([^/]+)$/, async (req, m) => {
-    const child = await readChild(decodeURIComponent(m[1]));
+  ['DELETE', /^\/api\/children\/([^/]+)\/adjustments\/([^/]+)$/, (req, m) => {
+    const child = readChild(decodeURIComponent(m[1]));
     if (!child) return [404, { error: 'Not found' }];
     const adj = (child.adjustments || []).find(a => a.id === m[2]);
     if (!adj) return [404, { error: 'Adjustment not found' }];
     child.adjustments = child.adjustments.filter(a => a !== adj);
     recompute(child);
-    await writeChild(child);
-    await appendLog(child, `_${stamp(new Date().toISOString())} — parent adjustment \`${adj.id}\` (${adj.capability_id} → ${pct(adj.value)}) removed; profile replayed._
+    writeChild(child);
+    appendLog(child, `_${stamp(new Date().toISOString())} — parent adjustment \`${adj.id}\` (${adj.capability_id} → ${pct(adj.value)}) removed; profile replayed._
 
 ---
 
@@ -242,18 +251,18 @@ const routes = [
   }],
   // Gold labels for Jev accuracy testing: which capabilities the tester believes the observation supports.
   ['PUT', /^\/api\/children\/([^/]+)\/observations\/([^/]+)\/expected$/, async (req, m) => {
-    const child = await readChild(decodeURIComponent(m[1]));
+    const child = readChild(decodeURIComponent(m[1]));
     if (!child) return [404, { error: 'Not found' }];
     const obs = child.observations.find(o => o.id === m[2]);
     if (!obs) return [404, { error: 'Observation not found' }];
     const { expected } = await readBody(req);
     obs.expected = Array.isArray(expected) ? expected.filter(id => CAP_BY_ID[id]) : null;
-    await writeChild(child);
+    writeChild(child);
     return [200, child];
   }],
-  ['GET', /^\/api\/children\/([^/]+)\/log$/, async (req, m) => {
-    const log = await store.readLog(decodeURIComponent(m[1]));
-    return log ? [200, log, 'text/markdown; charset=utf-8'] : [404, 'No log'];
+  ['GET', /^\/api\/children\/([^/]+)\/log$/, (req, m) => {
+    const f = logFile(decodeURIComponent(m[1]));
+    return fs.existsSync(f) ? [200, fs.readFileSync(f, 'utf8'), 'text/markdown; charset=utf-8'] : [404, 'No log'];
   }],
 ];
 
@@ -271,6 +280,5 @@ http.createServer(async (req, res) => {
   }
 }).listen(CFG.port, () => {
   console.log(`MathBaby capability demo → http://localhost:${CFG.port}`);
-  console.log(`Storage: ${store.kind}${store.dir ? ' (' + store.dir + ')' : ''}${store.ephemeral ? ' — EPHEMERAL, set up Upstash Redis to persist' : ''}`);
   console.log(`Jev mode: ${CFG.mode}${CFG.mode === 'live' ? ' (' + CFG.jevUrl + ')' : ' — set JEV_API_URL in demo/.env for live scoring'}`);
 });
