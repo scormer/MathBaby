@@ -32,7 +32,18 @@ open http://localhost:3000  (?child=<name> preselects a child)
 - The parameters are editable in the UI; changing them replays the whole history.
 - **Parent correction:** click a capability bar and use the slider. This re-anchors that capability's belief so its mean is the slider value, and it is logged as an event you can remove.
 
-## Storage (`demo/data/`, git-ignored)
+## Deploying on Vercel
+
+Vercel's function filesystem is read-only, and `/tmp` is wiped for each instance, so local JSON files can't persist there. When Upstash Redis env vars are present, `storage.js` uses Redis instead:
+
+1. In Vercel, go to **Storage → Create → Upstash for Redis** (Marketplace) and connect it to this project. That sets `KV_REST_API_URL` and `KV_REST_API_TOKEN`; `UPSTASH_REDIS_REST_URL/TOKEN` also work.
+2. Under **Settings → Environment Variables**, add `JEV_API_URL`, `JEV_API_KEY` and `JEV_EXTRA_BODY={"model":"jev-latest"}`. `demo/.env` is not deployed.
+3. Redeploy.
+4. Optional: copy local profiles up by running `node demo/migrate_to_redis.js`, with the two `KV_` variables set in your shell.
+
+Without Redis, the app still starts on Vercel but keeps data in `/tmp`, and a red **DATA NOT SAVED** badge appears. Locally, nothing changes: data goes to `demo/data/`, or to `DATA_DIR` if that's set.
+
+## Storage (local: `demo/data/`)
 
 - `children/<name>.json` holds the profile (the belief over levels, maturity, confidence and status for each capability), the model parameters, every observation (with its 43 scores, belief changes, raw Jev response and gold labels), and the parent adjustments.
 - `logs/<name>.md` is an append-only log. Each entry has the datetime, the observation text, the scores ≥ 0.05, and the maturity change per capability.
