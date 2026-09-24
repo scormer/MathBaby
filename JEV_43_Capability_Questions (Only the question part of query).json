@@ -1,0 +1,348 @@
+{
+  "questions": {
+    "NQ-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability NQ-01 — Quantity as a Set Property. Capability definition: Understands that a collection has a quantity that is preserved across irrelevant changes in spacing, arrangement, or object appearance. Boundary: Does not cover the counting procedure itself, written numerals, or numerical ordering. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "NQ-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability NQ-02 — Counting & Cardinality. Capability definition: Uses the counting system to determine or construct an exact quantity and understands that the final count word represents the total. Boundary: Does not primarily cover written numeral recognition, magnitude comparison, or arithmetic transformation. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "NQ-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability NQ-03 — Numeral–Quantity Mapping. Capability definition: Connects spoken and written number symbols with the exact quantities they denote. Boundary: Does not cover relative magnitude/order or the mechanics of counting a collection. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "NQ-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability NQ-04 — Magnitude, Order & Number-Line Relations. Capability definition: Understands relative numerical size, sequence position, and spatial/order relationships among numbers. Boundary: Does not cover numeral identification alone or composing numbers into parts. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "NQ-05": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability NQ-05 — Number Composition & Part–Whole Structure. Capability definition: Understands a number as a whole that can be composed from and decomposed into parts in multiple equivalent ways. Boundary: Does not cover solving additive situations as the main goal; it is about the internal structure of a number. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "AB-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability AB-01 — Additive Situation Structure. Capability definition: Understands the semantic structures represented by joining, separating, changing, comparing, and part–part–whole additive situations. Boundary: Does not cover general cross-domain modeling or calculation strategy efficiency. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "AB-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability AB-02 — Additive Relations & Calculation. Capability definition: Determines sums and differences and reasons about additive relationships using increasingly structured and efficient strategies. Boundary: Does not cover place-value structure or merely identifying whether a story is additive. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "AB-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability AB-03 — Base-Ten Unitization & Place Value. Capability definition: Understands that ten lower-order units can be treated as one higher-order unit and that digit position represents units of different sizes. Boundary: Does not cover multi-digit addition/subtraction procedures themselves. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "AB-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability AB-04 — Multi-Digit Additive Reasoning. Capability definition: Uses base-ten structure to reason about and calculate multi-digit addition and subtraction. Boundary: Does not cover the underlying place-value concept in isolation. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MR-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MR-01 — Equal Groups, Arrays & Multiplication. Capability definition: Understands multiplication as coordinated equal groups, arrays, and composite units rather than only repeated counting. Boundary: Does not cover fair sharing/grouping division or multiplicative comparison such as “three times as many.” Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MR-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MR-02 — Division, Sharing & Grouping. Capability definition: Understands division as equal sharing or determining how many equal groups can be formed. Boundary: Does not cover multiplication as the primary structure or scaling comparisons. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MR-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MR-03 — Multiplicative Comparison & Scaling. Capability definition: Understands multiplicative relationships in which one quantity is a scale factor or multiple of another. Boundary: Does not cover equal-group multiplication when no comparison or scaling relation is involved. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "RD-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability RD-01 — Equal Partition & Unit Fraction. Capability definition: Understands that a defined whole can be partitioned into equal shares and that one equal share represents a unit fraction. Boundary: Does not primarily cover comparing fraction magnitudes or equivalence among different fractions. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "RD-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability RD-02 — Fraction as Number & Magnitude. Capability definition: Understands fractions as numbers with magnitude that can be located, ordered, and compared. Boundary: Does not cover equal partitioning as the main construct or equivalence transformations. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "RD-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability RD-03 — Fraction Equivalence & Composition. Capability definition: Understands that different fractional expressions can denote the same quantity and that fractions can be composed or decomposed. Boundary: Does not cover basic unit-fraction partitioning or decimal notation. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "RD-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability RD-04 — Decimal Place Value & Magnitude. Capability definition: Extends base-ten place-value reasoning to quantities less than one and connects decimal notation to magnitude. Boundary: Does not cover whole-number place value or fraction equivalence as the main construct. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "PA-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability PA-01 — Repeating Pattern Structure. Capability definition: Recognizes and reasons about a repeating unit that generates a repeating pattern. Boundary: Does not cover patterns whose values systematically grow or general cross-domain structural noticing. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "PA-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability PA-02 — Growing Pattern & Functional Change. Capability definition: Understands systematic change across successive cases and uses the growth relationship to extend or predict. Boundary: Does not cover fixed repeating units or formal equality/unknowns. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "PA-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability PA-03 — Equality & Equivalence. Capability definition: Understands equality as a relation stating that two quantities or expressions have the same value. Boundary: Does not cover unknown-symbol manipulation as the main construct or general argument evaluation. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "PA-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability PA-04 — Unknowns & Relational Expressions. Capability definition: Reasons about unspecified quantities and relationships represented by blanks, symbols, or simple equations. Boundary: Does not cover equality alone or pattern growth without an unknown quantity. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "GS-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability GS-01 — Shape Properties & Classification. Capability definition: Classifies and reasons about 2D and 3D shapes using defining geometric properties rather than superficial appearance. Boundary: Does not cover general data classification or composing shapes from parts. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "GS-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability GS-02 — Shape Composition & Decomposition. Capability definition: Understands complex shapes as made from simpler geometric parts and simpler shapes as combinable into new shapes. Boundary: Does not cover number part–whole structure or mental rotation as the main construct. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "GS-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability GS-03 — Spatial Relations & Orientation. Capability definition: Represents and reasons about locations, directions, and relationships among objects or between self and environment. Boundary: Does not cover transforming an object’s orientation or shape properties. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "GS-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability GS-04 — Spatial Transformation & Visualization. Capability definition: Mentally or physically transforms spatial objects and anticipates their resulting orientation or configuration. Boundary: Does not cover static location/orientation vocabulary or shape classification by properties. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "ME-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability ME-01 — Length Reasoning. Capability definition: Understands one-dimensional extent and how length can be compared and measured using iterated units. Boundary: Does not cover area/coverage, mass, or visual “overall size.” Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "ME-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability ME-02 — Area & Coverage Reasoning. Capability definition: Understands two-dimensional coverage and how area can be compared or measured using equal area units. Boundary: Does not cover length/perimeter, volume, or vague visual size. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "ME-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability ME-03 — Capacity & Volume Reasoning. Capability definition: Understands amount contained and three-dimensional space, including comparison and measurement with equal units. Boundary: Does not cover area/coverage or mass/heaviness. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "ME-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability ME-04 — Mass Reasoning. Capability definition: Understands heaviness as a measurable attribute distinct from visual size or volume. Boundary: Does not cover capacity/volume or general comparison without the mass attribute. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "ME-05": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability ME-05 — Time & Duration Reasoning. Capability definition: Understands temporal order, duration, and measurement of elapsed or calendar time. Boundary: Does not cover number sequence/order unless it is specifically used to represent time. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "ME-06": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability ME-06 — Angle & Turn Reasoning. Capability definition: Understands angle as an amount of turn or opening and compares/measures that attribute independently of line length. Boundary: Does not cover length of rays/segments or general spatial rotation without angle magnitude. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "DC-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability DC-01 — Classification & Categorical Organization. Capability definition: Organizes objects or cases into categories using explicit attributes and can reorganize them under different valid rules. Boundary: Does not cover geometric shape classification specifically or graphical representation of collected data. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "DC-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability DC-02 — Data Representation. Capability definition: Converts categorized observations or measurements into organized external representations. Boundary: Does not cover interpreting conclusions from a graph as the primary capability. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "DC-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability DC-03 — Data Interpretation & Comparison. Capability definition: Extracts, compares, and reasons from information represented in tables, charts, and simple data displays. Boundary: Does not cover constructing the representation itself or probability/uncertainty. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "DC-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability DC-04 — Chance & Probability Reasoning. Capability definition: Reasons about uncertainty and relative likelihood of possible outcomes. Boundary: Does not cover deterministic pattern prediction or interpreting ordinary frequency charts. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MT-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MT-01 — Problem Representation & Modeling. Capability definition: Transforms a mathematical situation into a useful representation and interprets mathematical representations back in context. Boundary: Does not own the specific arithmetic/geometry content being represented; it is cross-domain representation competence. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MT-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MT-02 — Strategy Planning & Mathematical Adaptation. Capability definition: Chooses, sequences, and modifies mathematical approaches based on the structure of a problem. Boundary: Does not cover awareness of one’s own learning state; that belongs to metacognition. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MT-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MT-03 — Structural Noticing & Generalization. Capability definition: Identifies invariant mathematical relationships across examples and formulates a broader structure or rule. Boundary: Does not cover repeating/growing patterns as content unless the key issue is cross-example structural abstraction. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MT-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MT-04 — Mathematical Justification & Critique. Capability definition: Evaluates whether a mathematical claim or reasoning is valid and supports judgments with mathematical reasons or counterexamples. Boundary: Does not require polished communication skill; the target is mathematical validity and justification. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MT-05": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MT-05 — Transfer & Analogy. Capability definition: Recognizes a previously learned mathematical relationship in a new representation, context, or surface form and applies it appropriately. Boundary: Does not mean merely repeating the same skill with different numbers; the context or representation must meaningfully change. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MC-01": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MC-01 — Understanding & Uncertainty Monitoring. Capability definition: Notices and differentiates knowing, uncertainty, confusion, and guessing during mathematical activity. Boundary: Does not cover mathematical plausibility itself; that is MT-04. This capability concerns awareness of one’s own certainty. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MC-02": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MC-02 — Strategy Awareness & Progress Monitoring. Capability definition: Notices what strategy is being used and whether progress toward a mathematical solution is working. Boundary: Does not cover selecting the mathematically best strategy itself; selection quality is MT-02, awareness of one’s use is metacognitive. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MC-03": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MC-03 — Learning Regulation & Strategy Switching. Capability definition: Takes an appropriate learning action when current understanding or approach is insufficient. Boundary: Does not cover the mathematical merits of the replacement strategy itself; it concerns regulation in response to monitoring. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    },
+    "MC-04": {
+      "type": "noul",
+      "instructions": "Evaluate ONLY whether the supplied parent observation provides evidence about capability MC-04 — Reflection, Review & Consolidation. Capability definition: Reconstructs a recent learning experience, identifies the important idea or strategy, and organizes what changed in understanding. Boundary: Does not score general speaking/communication quality; verbal, visual, or action-based reflection can all count. Use only information actually present in the observation. Do not infer the capability merely from the child's age, a related capability, general intelligence, or lack of contrary evidence. Answer true only when the observation gives meaningful evidence that the child demonstrates this capability. If the observation is unrelated, vague, or insufficient, answer false.",
+      "criteria": {
+        "true": "The observation provides meaningful positive evidence that the child demonstrates this capability.",
+        "false": "The observation does not provide enough positive evidence for this capability."
+      }
+    }
+  }
+}

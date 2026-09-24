@@ -1,0 +1,586 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized Math / Logic App — Product Inception Research</title>
+<style>
+:root{--nav:#10223a;--nav2:#19395f;--paper:#fff;--bg:#f5f7fb;--ink:#1b2635;--muted:#667587;--line:#dce3ec;--blue:#2365a5;--blue2:#edf5fe;--green:#18714d;--green2:#ecf9f2;--amber:#9c6700;--amber2:#fff8e5;--purple:#6946a3;--purple2:#f4eefc;--red:#a43c3c;--red2:#fff1f1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.62}
+.layout{display:grid;grid-template-columns:310px minmax(0,1fr);min-height:100vh}.rail{position:sticky;top:0;height:100vh;overflow:auto;background:linear-gradient(180deg,var(--nav),var(--nav2));padding:22px 18px 30px;color:#fff}.rail h1{font-size:17px;margin:0 0 4px}.rail .sub{font-size:11.5px;color:#b9c9dc;margin-bottom:18px}.rail .label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#99aec5;margin:16px 8px 6px}.rail a{display:block;text-decoration:none;color:#e1ebf8;font-size:12.2px;padding:6px 8px;border-radius:7px}.rail a:hover{background:#ffffff14}.main{min-width:0}
+.hero{padding:48px 50px 34px;background:linear-gradient(135deg,#fff,#edf5fd);border-bottom:1px solid var(--line)}.hero h2{font-size:35px;line-height:1.15;margin:0 0 12px;color:#153657}.hero .lede{max-width:1040px;color:#4e5e72;font-size:16px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.meta span{border:1px solid #c5d4e5;background:#fff;color:#45617e;border-radius:999px;font-size:11.5px;padding:5px 9px}.content{max-width:1240px;padding:28px 40px 80px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:26px;margin-bottom:26px;box-shadow:0 5px 22px rgba(20,39,66,.04)}.section-title{display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px}.num{width:38px;height:38px;display:grid;place-items:center;background:#e9f2fb;color:#1b5a91;border-radius:9px;font-weight:800}h3{margin:0;font-size:22px;color:#193a5c}h4{margin:27px 0 8px;color:#294d70}p{max-width:1080px}blockquote{margin:16px 0;padding:12px 16px;border-left:4px solid var(--blue);background:#f3f8fe;border-radius:0 8px 8px 0}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0 20px}th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}th{background:#f1f5f9;color:#46566a}pre{background:#111c2a;color:#edf5ff;padding:15px 16px;border-radius:9px;overflow:auto;line-height:1.48;font-size:12.5px}.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);background:#fafcfe;border-radius:9px;padding:14px}.card strong{color:#1a4f7f}.card p{margin:5px 0 0;font-size:13px;color:#566579}.callout{padding:13px 15px;border-radius:9px;border-left:4px solid;margin:15px 0}.decision{background:var(--blue2);border-color:var(--blue)}.research{background:var(--green2);border-color:var(--green)}.hypothesis{background:var(--purple2);border-color:var(--purple)}.risk{background:var(--red2);border-color:var(--red)}.open{background:var(--amber2);border-color:var(--amber)}.tag{display:inline-block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}.small{font-size:12.5px;color:var(--muted)}
+@media(max-width:950px){.layout{display:block}.rail{position:relative;height:auto}.rail .nav-body{columns:2}.hero{padding:34px 24px}.content{padding:20px}.card-grid{grid-template-columns:1fr}}@media(max-width:620px){.rail .nav-body{columns:1}}@media print{.layout{display:block}.rail{display:none}.hero{padding:22px;background:#fff}.content{max-width:none;padding:0}section{box-shadow:none}}
+</style></head><body><div class="layout"><aside class="rail"><h1>APP Product Inception Research</h1><div class="sub">Canonical context · v1.2 · 24 Sep 2026<br>No Dan Wolczuk collaboration content included.</div><div class="nav-body">
+<div class="label">Start Here</div><a href="#canonical">0. Current canonical decisions</a><a href="#vision">1. Product thesis</a><a href="#research">2. Research foundation</a><a href="#scope">3. Scope & users</a>
+<div class="label">Learning Model</div><a href="#capabilities">4. Capability Model v0.1 (43)</a><a href="#skills">5. Capability / Skill / Indicator / Evidence</a><a href="#dag">6. DAG maintenance</a><a href="#metacog">7. Metacognition & abstraction</a>
+<div class="label">Parent UX</div><a href="#parentux">8. Low-friction parent UX</a><a href="#questionnaire">9. Questionnaire model</a><a href="#capstatus">10. Capability belief model + BKT</a>
+<div class="label">AI / Jev</div><a href="#jev">11. Jev architecture</a><a href="#cost">12. Cost control</a><a href="#recommendation">13. Recommendation engine</a>
+<div class="label">Content</div><a href="#activities">14. Activity architecture</a><a href="#examples">15. Concrete examples</a><a href="#misconceptions">16. Misconceptions & strategy</a>
+<div class="label">Business</div><a href="#parents">17. Parent value</a><a href="#commercial">18. Positioning & monetization</a><a href="#privacy">19. Privacy</a><a href="#metrics">20. Data & metrics</a>
+<div class="label">Execution</div><a href="#mvp">21. MVP</a><a href="#roadmap">22. Roadmap</a><a href="#openquestions">23. Open questions</a><a href="#sources">24. Sources</a><a href="#handoff">25. AI handoff</a>
+</div></aside><main class="main"><header class="hero"><h2>Personalized Math / Logic Learning App</h2><div class="lede">Full product-inception research handoff derived from the app-development discussion. The current direction is a <strong>parent-facing, low-friction personalized learning system</strong> for children's mathematics and mathematical thinking. It maintains a stable but extensible capability model, infers capability status from sparse parent check-ins and optional app signals, and recommends playful activities without requiring parents to assess every activity.</div><div class="meta"><span>Initial focus ~4–8</span><span>Expandable ~3–10</span><span>Parent is economic customer</span><span>Math content + thinking + metacognition</span><span>Jev-centered structured AI</span><span>Observation detached from activities</span></div></header><div class="content">
+<section id="canonical"><div class="section-title"><div class="num">0</div><div><h3>Current Canonical Decisions</h3><div class="small">These supersede earlier, more assessment-heavy proposals.</div></div></div>
+<div class="card-grid">
+<div class="card"><strong>Parent burden is a hard constraint.</strong><p>No required feedback after every activity. Parent interaction should be sparse, episodic and skippable.</p></div>
+<div class="card"><strong>Observation is detached from activities.</strong><p>Activities are learning experiences. Parent check-ins are a separate signal channel.</p></div>
+<div class="card"><strong>Questionnaire first.</strong><p>Default parent input is behavior-based questions using YES / NO / NOT SURE.</p></div>
+<div class="card"><strong>Direct capability inference is acceptable.</strong><p>For MVP, questionnaire state can update CapabilityStatus through AI without exposing an evidence workflow.</p></div>
+<div class="card"><strong>Capability is broader than math content.</strong><p>Top families: Math Content, Mathematical Thinking, Metacognition.</p></div>
+<div class="card"><strong>No Communication/Social capability family.</strong><p>Teach-back, parent debrief and error critique are activity mechanisms used to strengthen math thinking/metacognition.</p></div>
+<div class="card"><strong>Capability graph is stable but open.</strong><p>Stable core for longitudinal tracking; experimental perimeter can evolve under version control.</p></div>
+<div class="card"><strong>Graph, matrix and tree have different jobs.</strong><p>Graph for meaning; matrix for mappings/computation; tree only for browsing/UI.</p></div>
+<div class="card"><strong>Jev is a simple observation-to-capability classifier.</strong><p>For the generic 43-capability test, use one flat yes/no (<code>noul</code>) question per Capability and treat <code>P(true)</code> as that observation’s positive-support percentage. Keep learner history, graph logic and final policy in code.</p></div>
+<div class="card"><strong>Full LLM use should be selective.</strong><p>Optional free text, reports and offline content/ontology work—not every tap.</p></div>
+</div>
+<div class="callout decision"><span class="tag">Simple UX</span><br><strong>Parent answers a few questions → AI updates capability map → app recommends next activities.</strong></div><div class="callout research"><span class="tag">Decisions changed through v1.2</span><br>
+<ul><li>Capability Model v0.1 now contains <strong>43 concrete draft Capabilities</strong>.</li><li>Formal boundary frozen: <strong>Capability ≠ Skill ≠ Indicator ≠ Evidence ≠ Activity</strong>.</li><li>Skills get one owner Capability; Evidence may support multiple Capabilities.</li><li>The top-level learner model is now a sparse-evidence <strong>Capability Belief Model</strong>; classical BKT is deferred to future dense skill telemetry.</li><li>Capability DAG is a prior/readiness structure. Direct evidence can override missing predecessor observations.</li><li><strong>Jev simplification (v1.2):</strong> the generic observation classifier is a flat set of 43 independent yes/no (<code>noul</code>) Capability questions. Use <code>P(true)</code> as the observation’s positive-support percentage. Do not use SUPPORTS/CONTRADICTS/MIXED/INSUFFICIENT labels in the generic runtime schema.</li><li>A low Jev support percentage means <strong>the observation does not positively support that Capability</strong>; it does not by itself mean the child lacks the Capability.</li></ul></div></section>
+
+<section id="vision"><div class="section-title"><div class="num">1</div><div><h3>Product Thesis and Opportunity</h3></div></div>
+<p>The opportunity is not another adaptive worksheet app. The stronger product is a <strong>high-resolution mathematical development map</strong> that helps parents understand how their child thinks, what is developing, and what playful challenge is useful next.</p>
+<blockquote><strong>Positioning direction:</strong> Understand how your child thinks mathematically, then give them the right playful challenge next.</blockquote>
+<p>The app should eventually distinguish reciting number words vs enumerating objects; cardinality vs recounting; quantity comparison with objects vs numerals; count-all vs count-on vs decomposition; pattern continuation vs identifying the repeat unit; solving one example vs transferring structure; and using a strategy vs noticing/choosing it.</p>
+<div class="callout hypothesis"><span class="tag">Commercial hypothesis</span><br>The strongest differentiated promise is <strong>parent-visible insight into mathematical development and thinking</strong>, not generic “personalized math.”</div></section>
+
+<section id="research"><div class="section-title"><div class="num">2</div><div><h3>Research Foundation</h3></div></div>
+<p>No single mature, commercially reusable framework was found that simultaneously supplies ages 3–10, granular constructs, developmental sequencing, prerequisites, misconceptions, evidence definitions and activity recommendations.</p>
+<h4>Developmental backbone</h4><p><strong>Clements & Sarama Learning Trajectories</strong> are the closest conceptual foundation for early mathematics: learning goals, developmental levels of thinking and activities. They are especially relevant through roughly age 8. Treat them as research input, not a database to copy.</p>
+<h4>Standards</h4><p>Ontario, Common Core, UK, Australia, Singapore and similar standards are coverage/reporting layers. They should map onto the app model, not define it.</p>
+<h4>Learning-science mechanisms already identified</h4><ul><li>guided play;</li><li>worked examples and guidance fading;</li><li>retrieval and spacing;</li><li>interleaving where discrimination matters;</li><li>self-explanation;</li><li>analogical comparison / structure mapping;</li><li>erroneous examples / error critique;</li><li>metacognitive planning, monitoring and review;</li><li>multiple representations;</li><li>cognitive-load/task-confound awareness.</li></ul>
+<div class="callout research"><span class="tag">Research implication</span><br>Developmental trajectories are <strong>common paths and priors</strong>, not hard age locks or universal stage laws.</div></section>
+
+<section id="scope"><div class="section-title"><div class="num">3</div><div><h3>Scope, Users and Product Boundary</h3></div></div>
+<p>Architect for roughly ages 3–10, but initial focus should likely be <strong>4–8</strong>. Around age 3, language, attention, motor control, task familiarity and adult assistance strongly confound direct assessment. A parent-assisted preschool mode can be added later. Ages 8–10 can extend into multidigit reasoning, multiplication/division, fractions, decimals, area/volume, data and complex problem solving.</p>
+<table><thead><tr><th>Actor</th><th>Primary need</th></tr></thead><tbody><tr><td>Child</td><td>Play, agency, success, challenge, story, discovery, pattern/strategy awareness.</td></tr><tr><td>Parent</td><td>Low burden, trustworthy explanation, strengths/gaps, what to do next, worthwhile screen time.</td></tr></tbody></table>
+<p><strong>Scope discipline:</strong> do not become a broad communication/social-development app. Explaining, teaching back and critiquing another character are learning mechanics.</p></section>
+
+<section id="capabilities"><div class="section-title"><div class="num">4</div><div><h3>Capability Model v0.1 — First Draft (43 Capabilities)</h3><div class="small">Actual ontology content, not only design criteria. Status: DRAFT for pressure-testing.</div></div></div>
+<blockquote><strong>Capability</strong> = a relatively durable, transferable capacity to understand mathematical content, reason mathematically, or regulate one’s own mathematical learning across a family of situations.</blockquote>
+<div class="callout decision"><span class="tag">Core boundary rule</span><br><strong>Capabilities are the stable things the product cares about in the child. Skills are narrower instructional components. Indicators define what a parent could plausibly notice. Evidence is the actual dated answer/observation.</strong></div>
+<h4>Three Capability families</h4>
+<table><thead><tr><th>Family</th><th>Purpose</th><th>Count in v0.1</th></tr></thead><tbody>
+<tr><td><strong>MATH_CONTENT</strong></td><td>What mathematical structures/concepts the child understands and can use.</td><td>34</td></tr>
+<tr><td><strong>MATH_THINKING</strong></td><td>How the child reasons across mathematical content: model, plan, generalize, justify, transfer.</td><td>5</td></tr>
+<tr><td><strong>METACOGNITION</strong></td><td>How the child monitors and regulates their own mathematical thinking/learning.</td><td>4</td></tr>
+</tbody></table>
+<p><strong>Semantic exclusivity is the goal; evidence exclusivity is not.</strong> One parent observation may legitimately support several distinct Capabilities. For example, “She made 10 to solve 8+5 and explained why” may support <code>AB-02</code>, <code>MT-03</code>, and <code>MC-02</code>. The constructs remain distinct even when evidence overlaps.</p>
+<h4>Capability-vs-Skill test</h4>
+<ul><li>If the construct remains meaningful when numbers, objects, representations, and activity format change, it may be a Capability.</li><li>If it is one procedure, strategy, developmental milestone, or narrow knowledge component, it is usually a Skill.</li><li>Number ranges such as “count to 10/20/50,” set size, layout, distractors, and similar challenge variables are normally <strong>difficulty parameters</strong>, not new Capabilities.</li><li>Each Skill should have exactly one <strong>owner Capability</strong> for taxonomy cleanliness, while it may <code>SUPPORT</code> other Capabilities.</li></ul>
+<h4>Number &amp; Quantity <span class='small'>(5)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>NQ-01</code></td><td><strong>Quantity as a Set Property</strong><br><span class='small'>Understands that a collection has a quantity that is preserved across irrelevant changes in spacing, arrangement, or object appearance.</span></td><td>small-set subitizing; quantity conservation under rearrangement; one-to-one matching of equal-sized sets; recognizing same/different numerosity without symbols</td><td>Does not cover the counting procedure itself, written numerals, or numerical ordering.</td><td>If you spread the same few objects farther apart without adding or removing any, does your child usually understand that there are still the same number?</td></tr><tr><td><code>NQ-02</code></td><td><strong>Counting &amp; Cardinality</strong><br><span class='small'>Uses the counting system to determine or construct an exact quantity and understands that the final count word represents the total.</span></td><td>stable verbal count sequence; one-to-one correspondence; cardinal last-word principle; producing a requested number of objects; counting from a given starting number; tracking already-counted objects</td><td>Does not primarily cover written numeral recognition, magnitude comparison, or arithmetic transformation.</td><td>After counting a group of toys, if you ask “How many are there?”, does your child usually tell you the total without starting the count again?</td></tr><tr><td><code>NQ-03</code></td><td><strong>Numeral–Quantity Mapping</strong><br><span class='small'>Connects spoken and written number symbols with the exact quantities they denote.</span></td><td>written numeral recognition; spoken number to numeral; numeral to set; set to numeral; matching equivalent symbolic and non-symbolic quantities</td><td>Does not cover relative magnitude/order or the mechanics of counting a collection.</td><td>If you show a written number such as 7, can your child usually make or choose a group with exactly that many objects?</td></tr><tr><td><code>NQ-04</code></td><td><strong>Magnitude, Order &amp; Number-Line Relations</strong><br><span class='small'>Understands relative numerical size, sequence position, and spatial/order relationships among numbers.</span></td><td>greater-than/less-than comparison; ordering numbers; ordinal position; number-line placement; benchmarking and approximate position</td><td>Does not cover numeral identification alone or composing numbers into parts.</td><td>Can your child usually tell which of two familiar numbers is larger even when the difference is small, such as 8 and 9?</td></tr><tr><td><code>NQ-05</code></td><td><strong>Number Composition &amp; Part–Whole Structure</strong><br><span class='small'>Understands a number as a whole that can be composed from and decomposed into parts in multiple equivalent ways.</span></td><td>part–whole relations; number bonds; complements; multiple decompositions; recomposition; missing-part reasoning</td><td>Does not cover solving additive situations as the main goal; it is about the internal structure of a number.</td><td>If you ask for different ways to make 8 using two groups, can your child usually find more than one combination?</td></tr></tbody></table><h4>Additive &amp; Base-Ten Reasoning <span class='small'>(4)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>AB-01</code></td><td><strong>Additive Situation Structure</strong><br><span class='small'>Understands the semantic structures represented by joining, separating, changing, comparing, and part–part–whole additive situations.</span></td><td>recognizing join/separate/change/compare situations; identifying the unknown quantity; connecting story structure to addition or subtraction; distinguishing result-unknown from change/start-unknown situations</td><td>Does not cover general cross-domain modeling or calculation strategy efficiency.</td><td>When you describe a simple story where some objects are added, taken away, or compared, can your child usually tell what quantity needs to be found?</td></tr><tr><td><code>AB-02</code></td><td><strong>Additive Relations &amp; Calculation</strong><br><span class='small'>Determines sums and differences and reasons about additive relationships using increasingly structured and efficient strategies.</span></td><td>count-all; count-on/count-back; doubles and near-doubles; make-ten; derived facts; compensation; addition–subtraction inverse relationship</td><td>Does not cover place-value structure or merely identifying whether a story is additive.</td><td>If your child does not immediately know an addition answer, can they often work it out using a useful strategy instead of recounting everything from 1?</td></tr><tr><td><code>AB-03</code></td><td><strong>Base-Ten Unitization &amp; Place Value</strong><br><span class='small'>Understands that ten lower-order units can be treated as one higher-order unit and that digit position represents units of different sizes.</span></td><td>bundling ten ones; tens and ones; place-value decomposition; expanded form; representing numbers with grouped units; zero as placeholder</td><td>Does not cover multi-digit addition/subtraction procedures themselves.</td><td>If you show 34 as 3 groups of ten and 4 single objects, does your child understand that both representations mean the same number?</td></tr><tr><td><code>AB-04</code></td><td><strong>Multi-Digit Additive Reasoning</strong><br><span class='small'>Uses base-ten structure to reason about and calculate multi-digit addition and subtraction.</span></td><td>adding/subtracting tens and ones; regrouping; partial sums/differences; compensation; place-value algorithms; checking reasonableness of multi-digit results</td><td>Does not cover the underlying place-value concept in isolation.</td><td>When adding numbers such as 27 + 15, does your child use tens and ones or another structured method rather than counting one by one?</td></tr></tbody></table><h4>Multiplicative Reasoning <span class='small'>(3)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>MR-01</code></td><td><strong>Equal Groups, Arrays &amp; Multiplication</strong><br><span class='small'>Understands multiplication as coordinated equal groups, arrays, and composite units rather than only repeated counting.</span></td><td>forming equal groups; arrays; repeated addition as a bridge; multiplication expressions; commutativity through arrays; derived multiplication facts</td><td>Does not cover fair sharing/grouping division or multiplicative comparison such as “three times as many.”</td><td>If there are 4 bags with 3 objects in each, can your child reason about 4 groups of 3 without counting all 12 objects individually?</td></tr><tr><td><code>MR-02</code></td><td><strong>Division, Sharing &amp; Grouping</strong><br><span class='small'>Understands division as equal sharing or determining how many equal groups can be formed.</span></td><td>fair sharing; measurement/grouping division; inverse relation with multiplication; interpreting remainders; finding unknown group size or group count</td><td>Does not cover multiplication as the primary structure or scaling comparisons.</td><td>If 12 objects must be shared equally among 3 people, can your child usually reason out how many each person receives?</td></tr><tr><td><code>MR-03</code></td><td><strong>Multiplicative Comparison &amp; Scaling</strong><br><span class='small'>Understands multiplicative relationships in which one quantity is a scale factor or multiple of another.</span></td><td>twice/half as much; three times as many; scale factor; doubling/halving; ratio precursors; distinguishing additive from multiplicative comparison</td><td>Does not cover equal-group multiplication when no comparison or scaling relation is involved.</td><td>If one tower is 4 blocks tall and another is twice as tall, does your child understand the second tower should be 8 blocks rather than 6?</td></tr></tbody></table><h4>Fractions &amp; Decimals <span class='small'>(4)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>RD-01</code></td><td><strong>Equal Partition &amp; Unit Fraction</strong><br><span class='small'>Understands that a defined whole can be partitioned into equal shares and that one equal share represents a unit fraction.</span></td><td>identifying the whole; equal partitioning; halves/thirds/fourths; unit fractions; recognizing unequal shares as invalid</td><td>Does not primarily cover comparing fraction magnitudes or equivalence among different fractions.</td><td>When sharing one item among several people, does your child understand that the shares must be equal for them to be fair fractional parts?</td></tr><tr><td><code>RD-02</code></td><td><strong>Fraction as Number &amp; Magnitude</strong><br><span class='small'>Understands fractions as numbers with magnitude that can be located, ordered, and compared.</span></td><td>fraction number line; fraction comparison; ordering fractions; fractions greater than one; benchmark fractions</td><td>Does not cover equal partitioning as the main construct or equivalence transformations.</td><td>Can your child usually tell which of two simple fractions is larger by thinking about their size rather than only looking at the numerals?</td></tr><tr><td><code>RD-03</code></td><td><strong>Fraction Equivalence &amp; Composition</strong><br><span class='small'>Understands that different fractional expressions can denote the same quantity and that fractions can be composed or decomposed.</span></td><td>equivalent fractions; composing unit fractions; decomposing fractions; common-unit reasoning; recognizing multiple representations of the same fraction</td><td>Does not cover basic unit-fraction partitioning or decimal notation.</td><td>Does your child understand that two fourths can represent the same amount as one half when they refer to the same whole?</td></tr><tr><td><code>RD-04</code></td><td><strong>Decimal Place Value &amp; Magnitude</strong><br><span class='small'>Extends base-ten place-value reasoning to quantities less than one and connects decimal notation to magnitude.</span></td><td>tenths/hundredths; decimal place value; decimal comparison/order; fraction–decimal connections; number-line placement of decimals</td><td>Does not cover whole-number place value or fraction equivalence as the main construct.</td><td>Can your child explain why 0.7 is larger than 0.65 without treating 65 as automatically larger than 7?</td></tr></tbody></table><h4>Patterns &amp; Early Algebra <span class='small'>(4)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>PA-01</code></td><td><strong>Repeating Pattern Structure</strong><br><span class='small'>Recognizes and reasons about a repeating unit that generates a repeating pattern.</span></td><td>copying a pattern; extending a repeating pattern; identifying the repeat unit; translating a pattern to another modality; creating a pattern from a unit</td><td>Does not cover patterns whose values systematically grow or general cross-domain structural noticing.</td><td>If a pattern is red-blue-blue, red-blue-blue, can your child identify the smallest part that keeps repeating?</td></tr><tr><td><code>PA-02</code></td><td><strong>Growing Pattern &amp; Functional Change</strong><br><span class='small'>Understands systematic change across successive cases and uses the growth relationship to extend or predict.</span></td><td>identifying growth rule; extending growing patterns; predicting later cases; input-output relationships; tables of change</td><td>Does not cover fixed repeating units or formal equality/unknowns.</td><td>If a block pattern grows by 2 each step, can your child use that rule to predict what comes later rather than drawing every earlier step?</td></tr><tr><td><code>PA-03</code></td><td><strong>Equality &amp; Equivalence</strong><br><span class='small'>Understands equality as a relation stating that two quantities or expressions have the same value.</span></td><td>balance/equivalence; true/false equations; nonstandard equation forms; equivalent expressions; missing-side reasoning</td><td>Does not cover unknown-symbol manipulation as the main construct or general argument evaluation.</td><td>Does your child understand that 3 + 4 = 5 + 2 can be true even though there is no single “answer after the equals sign”?</td></tr><tr><td><code>PA-04</code></td><td><strong>Unknowns &amp; Relational Expressions</strong><br><span class='small'>Reasons about unspecified quantities and relationships represented by blanks, symbols, or simple equations.</span></td><td>missing-value problems; unknown as placeholder; simple equations; input-output rules; relational expressions</td><td>Does not cover equality alone or pattern growth without an unknown quantity.</td><td>If □ + 3 = 8, can your child treat the box as an unknown amount to determine rather than as a signal to start calculating from left to right?</td></tr></tbody></table><h4>Geometry &amp; Spatial Reasoning <span class='small'>(4)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>GS-01</code></td><td><strong>Shape Properties &amp; Classification</strong><br><span class='small'>Classifies and reasons about 2D and 3D shapes using defining geometric properties rather than superficial appearance.</span></td><td>recognizing shapes across orientation/size; sides/vertices/faces; property-based classification; shape hierarchy; category/subcategory relations in geometry</td><td>Does not cover general data classification or composing shapes from parts.</td><td>If a square is turned like a diamond, does your child still recognize it as a square and explain which properties stayed the same?</td></tr><tr><td><code>GS-02</code></td><td><strong>Shape Composition &amp; Decomposition</strong><br><span class='small'>Understands complex shapes as made from simpler geometric parts and simpler shapes as combinable into new shapes.</span></td><td>composing shapes; decomposing shapes; substituting equivalent component sets; partitioning shapes; recognizing component relationships</td><td>Does not cover number part–whole structure or mental rotation as the main construct.</td><td>Can your child combine simple shapes to make a target shape, or identify which smaller shapes make up a larger one?</td></tr><tr><td><code>GS-03</code></td><td><strong>Spatial Relations &amp; Orientation</strong><br><span class='small'>Represents and reasons about locations, directions, and relationships among objects or between self and environment.</span></td><td>above/below/inside/beside; left/right; route following; maps; relative position; simple coordinate ideas</td><td>Does not cover transforming an object’s orientation or shape properties.</td><td>Can your child follow or describe a route using spatial relationships such as left/right, above/below, or between?</td></tr><tr><td><code>GS-04</code></td><td><strong>Spatial Transformation &amp; Visualization</strong><br><span class='small'>Mentally or physically transforms spatial objects and anticipates their resulting orientation or configuration.</span></td><td>rotation; reflection; translation; mental imagery; perspective transformation; disembedding</td><td>Does not cover static location/orientation vocabulary or shape classification by properties.</td><td>Can your child usually predict how a familiar shape will look after it is turned or flipped, without needing to physically move it first?</td></tr></tbody></table><h4>Measurement <span class='small'>(6)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>ME-01</code></td><td><strong>Length Reasoning</strong><br><span class='small'>Understands one-dimensional extent and how length can be compared and measured using iterated units.</span></td><td>direct/indirect length comparison; ordering by length; transitivity; unit iteration; zero-point alignment; ruler use; perimeter as path length</td><td>Does not cover area/coverage, mass, or visual “overall size.”</td><td>When comparing two objects, does your child know to align the ends rather than judging only by where the far end happens to be?</td></tr><tr><td><code>ME-02</code></td><td><strong>Area &amp; Coverage Reasoning</strong><br><span class='small'>Understands two-dimensional coverage and how area can be compared or measured using equal area units.</span></td><td>direct/overlay comparison; covering without gaps/overlaps; equal area units; rows/columns; rectangular area structure</td><td>Does not cover length/perimeter, volume, or vague visual size.</td><td>If one rectangle is longer but much thinner, can your child avoid assuming it automatically has more area?</td></tr><tr><td><code>ME-03</code></td><td><strong>Capacity &amp; Volume Reasoning</strong><br><span class='small'>Understands amount contained and three-dimensional space, including comparison and measurement with equal units.</span></td><td>capacity comparison; pouring/filling; volume packing; equal volume units; 3D arrays; distinguishing container shape from amount held</td><td>Does not cover area/coverage or mass/heaviness.</td><td>If two differently shaped containers hold the same amount, can your child understand that one is not automatically “more” just because it is taller?</td></tr><tr><td><code>ME-04</code></td><td><strong>Mass Reasoning</strong><br><span class='small'>Understands heaviness as a measurable attribute distinct from visual size or volume.</span></td><td>direct balance comparison; ordering by mass; standard/nonstandard mass units; estimation; distinguishing mass from size</td><td>Does not cover capacity/volume or general comparison without the mass attribute.</td><td>Does your child understand that a smaller-looking object can still be heavier than a larger-looking one?</td></tr><tr><td><code>ME-05</code></td><td><strong>Time &amp; Duration Reasoning</strong><br><span class='small'>Understands temporal order, duration, and measurement of elapsed or calendar time.</span></td><td>before/after; sequence of events; duration comparison; clock reading; elapsed time; calendar structure</td><td>Does not cover number sequence/order unless it is specifically used to represent time.</td><td>Can your child compare how long two familiar activities take rather than only knowing which one happens first?</td></tr><tr><td><code>ME-06</code></td><td><strong>Angle &amp; Turn Reasoning</strong><br><span class='small'>Understands angle as an amount of turn or opening and compares/measures that attribute independently of line length.</span></td><td>turn amount; angle comparison; right-angle benchmark; angle measurement; orientation changes</td><td>Does not cover length of rays/segments or general spatial rotation without angle magnitude.</td><td>If two angles have arms of different lengths, can your child focus on how open the angles are rather than which arms look longer?</td></tr></tbody></table><h4>Data &amp; Chance <span class='small'>(4)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>DC-01</code></td><td><strong>Classification &amp; Categorical Organization</strong><br><span class='small'>Organizes objects or cases into categories using explicit attributes and can reorganize them under different valid rules.</span></td><td>same/different; single-attribute sorting; choosing a sorting rule; re-sorting; multiple attributes; category/subcategory organization</td><td>Does not cover geometric shape classification specifically or graphical representation of collected data.</td><td>Can your child sort the same objects in more than one sensible way, such as first by color and then by type?</td></tr><tr><td><code>DC-02</code></td><td><strong>Data Representation</strong><br><span class='small'>Converts categorized observations or measurements into organized external representations.</span></td><td>tallies; tables; picture graphs; bar graphs; scales/keys; mapping observations to marks or symbols</td><td>Does not cover interpreting conclusions from a graph as the primary capability.</td><td>Can your child turn a small collection of observations into a simple table, tally, or picture graph that preserves the counts?</td></tr><tr><td><code>DC-03</code></td><td><strong>Data Interpretation &amp; Comparison</strong><br><span class='small'>Extracts, compares, and reasons from information represented in tables, charts, and simple data displays.</span></td><td>reading values; comparing categories; finding most/least; differences between categories; simple trend/conclusion; answering questions from displays</td><td>Does not cover constructing the representation itself or probability/uncertainty.</td><td>Given a simple chart, can your child answer questions such as which category has more and how many more?</td></tr><tr><td><code>DC-04</code></td><td><strong>Chance &amp; Probability Reasoning</strong><br><span class='small'>Reasons about uncertainty and relative likelihood of possible outcomes.</span></td><td>impossible/certain/possible; more/less likely; simple sample spaces; fairness; experimental frequency as evidence</td><td>Does not cover deterministic pattern prediction or interpreting ordinary frequency charts.</td><td>Can your child explain why drawing a red block is more likely when a bag contains many red blocks and only one blue block?</td></tr></tbody></table><h4>Mathematical Thinking <span class='small'>(5)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>MT-01</code></td><td><strong>Problem Representation &amp; Modeling</strong><br><span class='small'>Transforms a mathematical situation into a useful representation and interprets mathematical representations back in context.</span></td><td>identifying relevant quantities; drawing/acting/modeling a situation; story-to-equation; equation-to-story; diagram-to-symbol; checking model against context</td><td>Does not own the specific arithmetic/geometry content being represented; it is cross-domain representation competence.</td><td>When facing a new word problem, does your child often make a useful drawing, object model, number sentence, or other representation rather than guessing from keywords?</td></tr><tr><td><code>MT-02</code></td><td><strong>Strategy Planning &amp; Mathematical Adaptation</strong><br><span class='small'>Chooses, sequences, and modifies mathematical approaches based on the structure of a problem.</span></td><td>choosing an approach; breaking a problem into parts; using a simpler case; changing mathematical strategy; selecting efficient representation; planning multi-step work</td><td>Does not cover awareness of one’s own learning state; that belongs to metacognition.</td><td>When the first mathematical approach is awkward, can your child often choose a different mathematical method that fits the problem better?</td></tr><tr><td><code>MT-03</code></td><td><strong>Structural Noticing &amp; Generalization</strong><br><span class='small'>Identifies invariant mathematical relationships across examples and formulates a broader structure or rule.</span></td><td>noticing common structure; finding invariants; aligning examples; generalizing a relationship; detecting regularity; creating another instance of the same structure</td><td>Does not cover repeating/growing patterns as content unless the key issue is cross-example structural abstraction.</td><td>After seeing several differently presented problems with the same underlying idea, can your child notice and describe what is mathematically the same?</td></tr><tr><td><code>MT-04</code></td><td><strong>Mathematical Justification &amp; Critique</strong><br><span class='small'>Evaluates whether a mathematical claim or reasoning is valid and supports judgments with mathematical reasons or counterexamples.</span></td><td>explaining why; checking plausibility; finding an error; critiquing another solution; counterexamples; comparing arguments</td><td>Does not require polished communication skill; the target is mathematical validity and justification.</td><td>If a character says “2 + 3 = 4,” can your child decide whether it is right and give a mathematical reason or correction?</td></tr><tr><td><code>MT-05</code></td><td><strong>Transfer &amp; Analogy</strong><br><span class='small'>Recognizes a previously learned mathematical relationship in a new representation, context, or surface form and applies it appropriately.</span></td><td>near transfer; representation transfer; story/symbol/object transfer; analogical mapping; applying known structure in a novel context</td><td>Does not mean merely repeating the same skill with different numbers; the context or representation must meaningfully change.</td><td>Can your child use an idea learned with objects in a different setting, such as recognizing the same part–whole relation in a story or equation?</td></tr></tbody></table><h4>Metacognition <span class='small'>(4)</span></h4><table><thead><tr><th>ID</th><th>Capability & formal boundary</th><th>Representative owned Skill families</th><th>Explicitly not this Capability</th><th>Example parent-observable indicator</th></tr></thead><tbody><tr><td><code>MC-01</code></td><td><strong>Understanding &amp; Uncertainty Monitoring</strong><br><span class='small'>Notices and differentiates knowing, uncertainty, confusion, and guessing during mathematical activity.</span></td><td>confidence monitoring; recognizing confusion; distinguishing guess from knowledge; deciding an answer needs checking; noticing mismatch between result and expectation</td><td>Does not cover mathematical plausibility itself; that is MT-04. This capability concerns awareness of one’s own certainty.</td><td>When unsure about a math answer, does your child usually recognize that uncertainty rather than confidently treating a guess as known?</td></tr><tr><td><code>MC-02</code></td><td><strong>Strategy Awareness &amp; Progress Monitoring</strong><br><span class='small'>Notices what strategy is being used and whether progress toward a mathematical solution is working.</span></td><td>recognizing own strategy; naming/describing strategy; noticing being stuck; monitoring intermediate progress; noticing own error while working</td><td>Does not cover selecting the mathematically best strategy itself; selection quality is MT-02, awareness of one’s use is metacognitive.</td><td>After solving a problem, can your child usually tell you what they tried or how they got the answer, even in simple words?</td></tr><tr><td><code>MC-03</code></td><td><strong>Learning Regulation &amp; Strategy Switching</strong><br><span class='small'>Takes an appropriate learning action when current understanding or approach is insufficient.</span></td><td>asking for a hint; switching approach after noticing difficulty; re-reading/rechecking; choosing another representation; slowing down; returning to an earlier idea</td><td>Does not cover the mathematical merits of the replacement strategy itself; it concerns regulation in response to monitoring.</td><td>When your child realizes a method is not working, do they often try a different approach, ask for a useful hint, or check their work instead of only repeating the same step?</td></tr><tr><td><code>MC-04</code></td><td><strong>Reflection, Review &amp; Consolidation</strong><br><span class='small'>Reconstructs a recent learning experience, identifies the important idea or strategy, and organizes what changed in understanding.</span></td><td>recalling process; identifying key idea; summarizing what was learned; comparing old/new approaches; reflecting on an error; identifying what to remember next time</td><td>Does not score general speaking/communication quality; verbal, visual, or action-based reflection can all count.</td><td>After a math activity, can your child usually tell or show you one important thing they learned or a strategy that helped?</td></tr></tbody></table>
+<h4>Implementation schema</h4>
+<pre><code>capability_id              # immutable stable ID
+family                     # MATH_CONTENT | MATH_THINKING | METACOGNITION
+domain
+name
+formal_definition
+boundary_exclusion
+status                     # DRAFT | EXPERIMENTAL | STABLE | DEPRECATED | RETIRED
+owned_skill_family_ids[]
+parent_indicator_ids[]
+importance
+downstream_value
+research_provenance[]
+standards_mapping[]
+introduced_version
+deprecated_version</code></pre>
+<div class="callout open"><span class="tag">Pressure-test before freezing</span><br>For every Capability ask: <strong>Coverage</strong> — is an important developmental construct missing? <strong>Overlap</strong> — can this be merged without losing useful meaning? <strong>Parent distinguishability</strong> — can parents observe meaningfully different indicators? <strong>Recommendation consequence</strong> — would a different status actually lead to different next activities?</div>
+</section>
+
+<section id="skills"><div class="section-title"><div class="num">5</div><div><h3>Boundary Model: Capability, Skill, Indicator, Evidence and Activity</h3><div class="small">These definitions are foundational and should remain stable across implementation changes.</div></div></div>
+<table><thead><tr><th>Object</th><th>Definition</th><th>Child state?</th><th>Example</th></tr></thead><tbody>
+<tr><td><strong>Capability</strong></td><td>Durable, transferable mathematical or metacognitive capacity across a family of situations.</td><td><strong>Yes</strong></td><td><code>AB-02 Additive Relations & Calculation</code></td></tr>
+<tr><td><strong>Skill</strong></td><td>Narrower teachable/practicable knowledge, procedure, representation, or strategy owned by one Capability.</td><td>Optional in MVP</td><td><code>MAKE_TEN</code>, <code>COUNT_ON</code></td></tr>
+<tr><td><strong>Indicator</strong></td><td>Predefined, parent-observable manifestation that would be informative about a Capability.</td><td>No</td><td>“Can work out an unfamiliar sum using a strategy instead of recounting all?”</td></tr>
+<tr><td><strong>Evidence</strong></td><td>An actual dated event: questionnaire answer, free-text observation, optional activity signal, or future app telemetry.</td><td>Historical input</td><td>Parent answered YES on 2026-09-24.</td></tr>
+<tr><td><strong>Activity</strong></td><td>A learning experience intended to introduce, practice, extend, review, or provoke reflection.</td><td>No</td><td>Split passengers between two boats in several ways.</td></tr>
+</tbody></table>
+<h4>Why Indicator and Evidence must be separate</h4><p><strong>Indicator = what would count as useful observable information.</strong> <strong>Evidence = what actually happened this time.</strong> Indicators are versioned ontology/content objects; Evidence is runtime history.</p>
+<h4>Why Activity stays separate from Evidence</h4><p>Activities are primarily for learning. Parents are not required to report after them. An activity may generate optional telemetry/evidence, but the capability model must also work when no activity feedback exists.</p>
+<h4>Skill ownership</h4><pre><code>Skill
+  owner_capability_id   # exactly one for classification
+  supports_capability_ids[]  # zero or more cross-links
+  difficulty_parameters{}
+  representation_tags[]
+  strategy_tags[]</code></pre>
+<p>Example: <code>MAKE_TEN</code> is owned by <code>AB-02</code>. It may also support <code>NQ-05</code> and produce evidence relevant to <code>MT-03</code>, but it is not duplicated under those branches.</p>
+<h4>Evidence mapping rule</h4><p>One Evidence event may map to several Capabilities with different strengths/confidences. This is desirable because human behavior is multi-informative. The ontology stays exclusive by definition, not by forcing every event into one bucket.</p>
+</section>
+
+<section id="dag"><div class="section-title"><div class="num">6</div><div><h3>Maintaining the Capability DAG-ish Graph</h3></div></div>
+<p>The whole model is a graph; only prerequisite-like edges need acyclicity.</p>
+<pre><code>Capability Graph
+  ├── REQUIRES          # must have no cycles
+  ├── FACILITATES
+  ├── SUPPORTS
+  ├── TRANSFER_RELATED
+  ├── PART_OF
+  └── RELATED_TO</code></pre>
+<p>Use stable immutable IDs, lifecycle states and graph versions. Version edges with rationale, confidence/evidence grade and introduced/deprecated versions. Never allow production correlations to automatically rewrite prerequisites.</p>
+<pre><code>New research / data anomaly
+      ↓
+GraphChangeProposal
+      ↓
+Review
+      ↓
+EXPERIMENTAL node/edge
+      ↓
+test / observe
+      ↓
+STABLE or reject</code></pre>
+<p>Maintain source files such as <code>capabilities.yaml</code>, <code>capability_edges.yaml</code>, <code>skills.yaml</code>, <code>parent_indicators.yaml</code>, <code>activity_modes.yaml</code>, then compile to production tables. Automated graph tests should reject cycles in <code>REQUIRES</code>, invalid references and retired dependencies.</p></section>
+
+<section id="metacog"><div class="section-title"><div class="num">7</div><div><h3>Metacognition, Abstraction and Higher-Level Thinking</h3></div></div>
+<h4>Structure discovery</h4><pre><code>same structure / same surface
+→ same structure / different objects
+→ different story
+→ different representation
+→ near contrast
+→ counterexample
+→ child generates another example</code></pre>
+<p>Use prompts such as “What is the same?”, “What changed?”, “What stayed true?” to help children extract relational structure rather than only solve instances.</p>
+<h4>Visual indexing</h4><p>Use a consistent relational visual grammar—part-whole, number line, equal groups, arrays, balance/comparison—then fade support and vary representation so visuals remain retrieval scaffolds, not shortcuts.</p>
+<h4>Metacognitive progression</h4><p>Early: notice/label (“You tried counting.”). Middle: compare strategies. Later: plan/monitor/evaluate. Advanced: generalize and evaluate when strategies do or do not work.</p>
+<h4>Teach-back and review</h4><p>“Tell me what you did/learned” is an activity mode that forces retrieval, organization, strategy awareness and summary. Parent follow-up can trigger another thinking cycle without creating a new communication-capability domain.</p>
+<h4>Error critique</h4><p>“Milo says 2+3=4. Is he right?” can exercise content knowledge, plausibility checking, error detection and metacognition. Erroneous examples should be used when prior knowledge is sufficient.</p></section>
+
+<section id="parentux"><div class="section-title"><div class="num">8</div><div><h3>Low-Friction Parent UX</h3></div></div>
+<blockquote><strong>Design target: 30–60 seconds of parent input occasionally, not feedback after every activity.</strong></blockquote>
+<table><thead><tr><th>Moment</th><th>Parent burden</th><th>Purpose</th></tr></thead><tbody>
+<tr><td>Onboarding</td><td>~8–12 high-information questions, possibly split into two short batches</td><td>Create a rough initial capability profile.</td></tr>
+<tr><td>Ongoing pulse</td><td>2–4 questions occasionally</td><td>Resolve uncertainty near the learning frontier.</td></tr>
+<tr><td>Triggered check-in</td><td>Only when uncertainty would materially change the next recommendation</td><td>Choose between plausible learning paths.</td></tr>
+<tr><td>Progress-report moment</td><td>Optional 1–3 confirmations</td><td>Refresh stale information while parent attention is already present.</td></tr>
+<tr><td>After activity</td><td>No mandatory input</td><td>Optional one-tap “too easy / about right / too hard.”</td></tr>
+</tbody></table>
+<ul><li>“Not sure” is safe and useful; never interpret it as “No.”</li><li>Ask observable behavior, not educational jargon.</li><li>Do not ask a question whose answer will not affect the model or recommendation.</li><li>Batch questions rather than interrupt repeatedly.</li><li>Allow skip.</li><li>Avoid fake precision.</li></ul></section>
+
+<section id="questionnaire"><div class="section-title"><div class="num">9</div><div><h3>Questionnaire / Parent-Signal Model</h3></div></div>
+<p>The practical bridge between parent UX and the capability model is a library of <strong>parent-observable indicators</strong>.</p>
+<pre><code>Capability
+   1:N
+ParentObservableIndicator
+   1:N
+QuestionWordingVariant
+      ↓
+ParentResponseEvent
+      ↓
+AI capability inference</code></pre>
+<p>Do not ask “Does your child understand cardinality?” Ask something parents can recognize, such as:</p>
+<blockquote>“After your child counts a group of toys, if you ask ‘How many are there?’, do they usually tell you the total without starting the count again?”</blockquote>
+<p>Default answers:</p><pre><code>YES
+NO
+NOT_SURE</code></pre>
+<p>A future <code>SOMETIMES</code> or <code>WITH_HELP</code> can be introduced only if user testing shows clear value.</p>
+<pre><code>indicator_id
+primary_capability_id
+secondary_capability_ids[]
+observable_statement
+parent_question
+age_prior
+difficulty_band
+polarity
+status
+schema_version</code></pre>
+<p>Prefer one primary capability per question for interpretability; the inference model can still use neighboring capabilities and prior history.</p></section>
+
+<section id="capstatus"><div class="section-title"><div class="num">10</div><div><h3>Capability Belief Model: Sparse Evidence, Bayesian Thinking and BKT Position</h3></div></div>
+<p>The app’s data-generating process is intentionally sparse and irregular: parent questionnaire answers, optional free text, occasional activity feedback, and potentially some future structured app telemetry. Therefore <strong>classical Bayesian Knowledge Tracing (BKT) should not be the v1 core learner model</strong>.</p>
+<h4>Why classical BKT is not the primary fit</h4>
+<ul><li>BKT works best with repeated sequential opportunities tagged to a known skill/KC.</li><li>Your parent feedback is optional, asynchronous, heterogeneous, and often capability-level rather than attempt-level.</li><li>BKT itself does <em>not</em> require a strict prerequisite tree; the main mismatch is sparse/irregular evidence and uncertain skill attribution.</li><li>Forcing questionnaire/free-text observations into pseudo-attempt sequences would add complexity without improving parent UX.</li></ul>
+<h4>Recommended v1 state</h4>
+<pre><code>CapabilityBelief
+  capability_id
+
+  P_UNKNOWN
+  P_NOT_YET
+  P_DEVELOPING
+  P_CONSISTENT
+
+  displayed_status       # argmax/policy-derived descriptive state
+  confidence
+  last_evidence_at
+  staleness
+  evidence_count
+  ontology_version</code></pre>
+<p>Parent-facing vocabulary remains:</p>
+<pre><code>UNKNOWN       # insufficient or conflicting information
+NOT_YET       # meaningful difficulty is indicated
+DEVELOPING    # partial / inconsistent / emerging
+CONSISTENT    # usually demonstrated in expected situations</code></pre>
+<h4>Bayesian principle without textbook BKT</h4><p>Use Bayesian thinking: new evidence modifies belief about a Capability. Initially this can be implemented as calibrated weighted/probabilistic updates rather than a complex Bayesian network.</p>
+<pre><code>P(CapabilityState | Evidence)
+  ∝ P(Evidence | CapabilityState)
+    × P(CapabilityState before evidence)</code></pre>
+<p>Different sources can have different reliability. For example, a concrete behavior questionnaire or detailed free-text observation can be stronger than an optional “too easy” activity rating. <strong>No observation should reduce confidence/staleness, not automatically reduce capability status.</strong></p>
+<p><strong>Signal semantics matter:</strong> a targeted questionnaire answer of <code>NO</code> may provide negative evidence because the question explicitly probes the Capability. By contrast, the generic Jev free-text classifier only estimates whether an observation positively supports each Capability; a low <code>P(true)</code> is normally <em>absence of positive support</em>, not negative evidence.</p>
+<h4>Practical runtime</h4>
+<pre><code>Structured parent answer / free text / optional signal
+                    ↓
+      direct mapping or Jev classification
+                    ↓
+  per-Capability evidence/support signal
+                    ↓
+     belief updater + history + recency in code
+                    ↓
+             CapabilityBelief
+                    ↓
+              Learning Frontier</code></pre>
+<h4>Where BKT can fit later</h4><p>If a future in-app game produces dense repeated attempts reliably tagged to a Skill, BKT/knowledge tracing can become a <strong>specialized evidence source underneath the Capability Belief Model</strong>:</p>
+<pre><code>Parent sparse evidence ── Jev ──┐
+                                ├─→ Capability Belief → Recommendation
+Dense tagged app attempts ─ BKT ┘</code></pre>
+<div class="callout decision"><span class="tag">Current decision</span><br><strong>Use Bayesian thinking, not classical BKT as the product’s top-level learner model.</strong> The graph is a prior/recommendation structure, not a law; direct evidence can update a Capability even when predecessor Capabilities are unknown.</div>
+</section>
+
+<section id="jev"><div class="section-title"><div class="num">11</div><div><h3>Jev-Centered AI Architecture</h3></div></div>
+<p>Jev is used as a <strong>structured probabilistic classifier</strong>, not as the persistent learner model. The simplest generic schema for parent observations is intentionally flat: one independent yes/no (<code>noul</code>) question for each of the 43 Capabilities.</p>
+<div class="callout decision"><span class="tag">Architecture principle</span><br><strong>Jev classifies the current observation. The Capability Belief Model remembers across time. Ordinary code handles graph constraints/history. The recommendation policy decides.</strong></div>
+
+<h4>Primary generic schema — 43 flat Capability support questions</h4>
+<p>Input one parent observation as shared state. Ask all 43 Capability questions at the same level; there is no domain hierarchy in the Jev request.</p>
+<pre><code>{
+  "state": {
+    "child_age": 6,
+    "parent_observation": "She said 8+5 is 13 because she made 10 first."
+  },
+  "questions": {
+    "NQ-01": {
+      "type": "noul",
+      "instructions": "Does this observation provide meaningful positive evidence that the child demonstrates NQ-01 — Quantity as a Set Property? Answer true only when the observation actually supports this capability; otherwise false."
+    },
+    "...": {},
+    "MC-04": {
+      "type": "noul",
+      "instructions": "Does this observation provide meaningful positive evidence that the child demonstrates MC-04 — Reflection, Review & Consolidation? Answer true only when the observation actually supports this capability; otherwise false."
+    }
+  }
+}</code></pre>
+
+<p>For each Capability, consume the returned probability of <code>true</code> as a simple <strong>observation-support percentage</strong>:</p>
+<pre><code>{
+  "NQ-01": 0.03,
+  "NQ-02": 0.05,
+  "AB-02": 0.91,
+  "MT-03": 0.68,
+  "MC-02": 0.54
+}</code></pre>
+
+<div class="callout decision"><span class="tag">Critical interpretation</span><br>
+<strong><code>AB-02 = 0.91</code> means “this observation strongly supports AB-02.” It does NOT mean “the child has 91% mastery of AB-02.”</strong><br>
+Likewise, <code>ME-02 = 0.01</code> normally means the observation says almost nothing positive about area reasoning; it does not mean the child has only 1% area capability.</div>
+
+<h4>Why yes/no instead of four evidence labels</h4>
+<p>The generic classifier intentionally avoids <code>SUPPORTS / CONTRADICTS / MIXED / INSUFFICIENT</code>. The product does not need that granularity for ad-hoc observation routing, and the simpler output is easier to use, validate and explain.</p>
+<pre><code>parent observation
+      ↓
+43 independent Jev yes/no questions
+      ↓
+43 P(true) values
+      ↓
+keep meaningful support signals
+      ↓
+Capability Belief updater</code></pre>
+
+<h4>Question template</h4>
+<p>Each question should still include the Capability definition and exclusion boundary from the ontology so adjacent constructs remain distinguishable:</p>
+<pre><code>type: "noul"
+
+instructions:
+  Evaluate ONLY whether the supplied parent observation provides
+  meaningful positive evidence about {CAPABILITY_ID} — {NAME}.
+
+  Definition: {FORMAL_DEFINITION}
+  Boundary: {BOUNDARY_EXCLUSION}
+
+  Answer true only when information actually present in the observation
+  supports this capability. Do not infer it from age, a related capability,
+  general intelligence, or lack of contrary evidence.
+  If unrelated, vague, or insufficient, answer false.</code></pre>
+
+<h4>Structured questionnaire versus generic observation classifier</h4>
+<table><thead><tr><th>Input</th><th>Meaning</th><th>Recommended handling</th></tr></thead><tbody>
+<tr><td>Targeted questionnaire: YES</td><td>Positive evidence for the Capability/Indicator being asked</td><td>Update belief positively according to indicator reliability.</td></tr>
+<tr><td>Targeted questionnaire: NO</td><td>Potential negative evidence because a specific behavior was explicitly probed</td><td>May update belief downward, conservatively.</td></tr>
+<tr><td>Targeted questionnaire: NOT_SURE</td><td>No usable observation</td><td>Do not update mastery; optionally increase uncertainty/staleness.</td></tr>
+<tr><td>Free-text Jev <code>P(true)</code> high</td><td>The free-text observation positively supports this Capability</td><td>Add positive evidence weighted by probability/source reliability.</td></tr>
+<tr><td>Free-text Jev <code>P(true)</code> low</td><td>The observation does not positively support this Capability</td><td>Usually no belief decrease. Treat as no positive evidence.</td></tr>
+</tbody></table>
+
+<h4>Example</h4>
+<p>For <em>“She said 8+5 is 13 because she made 10 first.”</em>, expected high/medium support should cluster around <code>AB-02</code> (Additive Relations & Calculation), potentially <code>MT-03</code> (Structural Noticing & Generalization), and possibly <code>MC-02</code> (Strategy Awareness & Progress Monitoring), depending on whether the wording reflects the child's own explanation.</p>
+
+<h4>Production optimization</h4>
+<p>The 43-flat-question version is excellent for Playground testing and can remain the reference classifier. In production, cost/latency can later be reduced by cheap deterministic/context filtering or a first-stage relevance pass so only plausible Capability questions are sent. Do this only if measurement shows a benefit; do not complicate the MVP prematurely.</p>
+
+<h4>Other Jev uses remain optional</h4>
+<ul>
+<li>Select or score the next 2–4 parent questionnaire questions when uncertainty matters.</li>
+<li>Classify a learning need such as <code>VERIFY / INTRODUCE / PRACTICE / EXTEND / REVIEW</code> if deterministic rules are insufficient.</li>
+<li>Score a small top-K set of eligible activities on readiness/variety/effort/preferences.</li>
+</ul>
+
+<h4>Validation</h4>
+<p>Jev output is probabilistic classification, not ground truth. Build a gold-label observation set and compare the 43 support probabilities against expert judgments, especially for adjacent Capabilities. Track false-positive support, false-negative support and calibration before using these probabilities strongly in learner-state updates.</p></section>
+
+<section id="cost"><div class="section-title"><div class="num">12</div><div><h3>AI Cost-Control Strategy</h3></div></div>
+<table><thead><tr><th>Work</th><th>Technology</th><th>Frequency</th></tr></thead><tbody>
+<tr><td>Parent check-in → capability status</td><td>Jev</td><td>Batched per check-in</td></tr>
+<tr><td>Select next 2–4 parent questions</td><td>Code + Jev</td><td>Only when uncertainty matters</td></tr>
+<tr><td>Prerequisites, staleness, graph eligibility</td><td>Ordinary code / SQL</td><td>Cheap and frequent</td></tr>
+<tr><td>Activity filtering</td><td>Ordinary code</td><td>Frequent</td></tr>
+<tr><td>Fuzzy ranking of top-K activities</td><td>Jev optional</td><td>Recommendation refresh</td></tr>
+<tr><td>Optional long parent note</td><td>Full LLM</td><td>Rare/on demand</td></tr>
+<tr><td>Weekly parent narrative</td><td>Template + LLM or LLM</td><td>Weekly, cached</td></tr>
+<tr><td>Activity/content generation and ontology research</td><td>Full LLM / agent offline</td><td>Editorial workflow</td></tr>
+</tbody></table>
+<ul><li>No model call for every tap.</li><li>Batch check-in judgments in one structured request where possible.</li><li>Cache capability state until meaningful new input arrives.</li><li>Filter with code before AI ranking.</li><li>Pre-generate/curate activity families instead of generating every experience live.</li><li>Keep an abstraction layer so Jev can be replaced/supplemented later; it is a new technology.</li></ul></section>
+
+<section id="recommendation"><div class="section-title"><div class="num">13</div><div><h3>Recommendation Engine — Practical Version</h3></div></div>
+<h4>1. Candidate capability frontier in code</h4><p>Use current status, prerequisite readiness, age as a prior, staleness/review need, uncertainty, downstream importance and recent repetition.</p>
+<h4>2. Determine learning need</h4>
+<pre><code>UNKNOWN    → VERIFY
+NOT_YET    → INTRODUCE
+DEVELOPING → PRACTICE
+CONSISTENT + narrow exposure → EXTEND
+CONSISTENT + stale           → REVIEW</code></pre>
+<p>These are defaults, not rigid rules.</p>
+<h4>3. Filter activities</h4><p>Filter by capability mapping, age, materials, duration, parent involvement, online/off-screen mode, accessibility and repetition.</p>
+<h4>4. AI only where it helps</h4><p>If many candidates remain, Jev can score top candidates for readiness, variety, effort and child preference; otherwise code is enough.</p>
+<h4>5. Explain why</h4><blockquote>“Next we’re working on comparing two-digit numbers because your child appears comfortable with tens and ones, but you’re not yet sure whether they can compare close values without counting one by one.”</blockquote></section>
+
+<section id="activities"><div class="section-title"><div class="num">14</div><div><h3>Activity Architecture</h3></div></div>
+<p>Activities are learning experiences, not mandatory assessments. They map many-to-many to capabilities.</p>
+<pre><code>Activity ↔ Capability
+
+roles:
+  TARGET
+  REINFORCE
+  TRANSFER
+  METACOG_PROMPT</code></pre>
+<h4>Activity modes</h4>
+<pre><code>PLAY_DISCOVER
+GUIDED_EXAMPLE
+PRACTICE
+COMPARE_EXAMPLES
+STRUCTURE_DISCOVERY
+ERRONEOUS_EXAMPLE
+CRITIQUE_REASONING
+RETRIEVAL
+TRANSFER
+REFLECT_SUMMARIZE
+TEACH_BACK
+REAL_WORLD_PARENT_ACTIVITY</code></pre>
+<blockquote><strong>Mathematics should be the game mechanic, not a quiz pasted onto a game.</strong></blockquote>
+<p>Examples: feed exactly N animals; give every guest one plate; tile a garden; split passengers between boats; pack tens; arrange equal rows; repair patterns; rotate/map objects; debug a character’s mistaken reasoning.</p>
+<p>Optional feedback can be one tap: <code>TOO_EASY / ABOUT_RIGHT / TOO_HARD / SKIP</code>. Never require it.</p></section>
+
+<section id="examples"><div class="section-title"><div class="num">15</div><div><h3>Concrete Modeling Examples</h3></div></div>
+<h4>Counting</h4><p>Do not treat “count to 10 / 20 / 50” as separate fundamental capabilities. Distinguish verbal sequence, one-to-one correspondence, cardinality, producing N, numeral recognition, quantity mapping, count-on/back, etc. Use number range, layout, density and manipulability as difficulty parameters.</p>
+<h4>Sorting / “size”</h4><p>Separate length, height, area/coverage, capacity, volume and mass. Sorting 3/5/10 objects usually changes task complexity, not the underlying attribute concept.</p>
+<h4>Addition strategy</h4>
+<pre><code>COUNT_ALL → COUNT_ON → KNOWN_FACT / DIRECT_RECALL → DECOMPOSITION / MAKE_TEN / FLEXIBLE STRATEGY</code></pre>
+<p>Correctness and strategy sophistication remain conceptually separate even if MVP does not yet maintain per-child SkillState.</p>
+<h4>Structure-discovery family</h4>
+<pre><code>3 red blocks + 2 red blocks
+→ 3 apples + 2 apples
+→ 3 children on bus + 2 enter
+→ 5 split into 3 and 2
+→ 3 + ? = 5
+→ "Show me another way to make 5"</code></pre></section>
+
+<section id="misconceptions"><div class="section-title"><div class="num">16</div><div><h3>Misconceptions, Strategies and Non-Math Confounds</h3></div></div>
+<pre><code>more_spread_out_means_more_objects
+longer_side_means_bigger_area
+larger_written_numeral_means_larger_number
+denominator_bigger_means_fraction_bigger
+equal_sign_means_answer_comes_next
+measurement_units_can_have_gaps
+start_measurement_at_1_not_0</code></pre>
+<p>Misconceptions can initially guide content/activity design without showing parents a numerical misconception score.</p>
+<p>Failure may instead reflect language, working memory, visual search, fine motor demand, attention, device familiarity or parent assistance. Parent questions should focus on recognizable behavior, and strong claims should survive multiple contexts/representations.</p></section>
+
+<section id="parents"><div class="section-title"><div class="num">17</div><div><h3>Parent Value and Reporting</h3></div></div>
+<p>Do not report primarily “17 activities completed / 320 XP.” Report how thinking is changing:</p>
+<blockquote>“Your child is consistently recognizing quantities to 5 without counting. They are developing a count-on strategy in addition. This week’s activities will help them notice that starting from the larger number is often faster than recounting everything.”</blockquote>
+<table><thead><tr><th>Layer</th><th>Example</th></tr></thead><tbody>
+<tr><td>Math Content</td><td>Number composition — developing</td></tr>
+<tr><td>Math Thinking</td><td>Pattern detection — consistent; generalization — developing</td></tr>
+<tr><td>Metacognition</td><td>Can describe strategy — developing; notices uncertainty — unknown/emerging</td></tr>
+</tbody></table>
+<p>Use concrete descriptions and confidence-aware wording. Avoid “math age” or percentile claims until there is proper normative validation.</p></section>
+
+<section id="commercial"><div class="section-title"><div class="num">18</div><div><h3>Competitive Positioning and Monetization</h3></div></div>
+<p>Competitors already offer adaptive math, skill libraries and games (IXL, SplashLearn, Matific, DreamBox, Prodigy, Khan Academy Kids and others). “AI personalized math” or “fun personalized math games” is not enough.</p>
+<h4>Defensible differentiation</h4><ul><li>parent-visible developmental map;</li><li>explainable “why this next activity?”;</li><li>math thinking + metacognition, not only curriculum content;</li><li>structure-discovery activities;</li><li>longitudinal capability data;</li><li>low parent burden;</li><li>online + real-world activities.</li></ul>
+<h4>Business model</h4><p>Favor parent-paid subscription over advertising. Earlier working hypothesis: test roughly the $80–120/year region for one child, plus family pricing; this remains a hypothesis, not an established optimum.</p>
+<h4>Freemium</h4><p>Prefer monetizing depth of insight/personalization rather than blocking learning. Free can include an initial map/basic activities; paid can include continuous personalization, rich explanations, long-term history, multiple children, weekly plans and parent-guided real-world activities.</p>
+<h4>Conversion trigger</h4><p>Optimize for the first meaningful or surprising insight, not just trial expiry.</p></section>
+
+<section id="privacy"><div class="section-title"><div class="num">19</div><div><h3>Child Privacy and Platform Compliance Direction</h3></div></div>
+<p>Because the product targets children, privacy is product architecture. Prior research identified current COPPA requirements/changes, Apple Kids Category restrictions, Google Play Families policy and EU restrictions on profiling-based advertising to minors.</p>
+<ul><li>Minimize child data collection.</li><li>Make the parent account/control layer explicit.</li><li>Avoid dependence on targeted advertising.</li><li>Use only necessary child-compatible analytics/SDKs.</li><li>Separate operational analytics from future academic research data.</li></ul></section>
+
+<section id="metrics"><div class="section-title"><div class="num">20</div><div><h3>Data Flywheel and Metrics</h3></div></div>
+<p>Do not optimize screen time as the primary business metric.</p>
+<blockquote>demonstrated progress → parent-visible value → retention → conversion → renewal → sibling addition</blockquote>
+<h4>Suggested funnel</h4>
+<pre><code>install
+→ parent initial check-in
+→ first capability map
+→ first meaningful insight
+→ first recommended activity
+→ return
+→ capability map visibly evolves
+→ subscription conversion
+→ week-4 retention
+→ annual renewal
+→ sibling addition</code></pre>
+<p><strong>Time to First Surprising Insight</strong> remains a useful internal metric.</p>
+<p>Long-term moat: longitudinal capability states + activity exposure + optional outcomes, eventually enabling empirical learning about which experiences help which profiles. Do not make causal claims without suitable study design.</p></section>
+
+<section id="mvp"><div class="section-title"><div class="num">21</div><div><h3>Practical MVP</h3></div></div>
+<ol>
+<li><strong>Start from the 43-Capability v0.1 draft</strong>; pressure-test and promote a stable subset before public launch.</li>
+<li><strong>100–200 parent-observable indicators/questions</strong> in the library, while each parent sees only a small adaptive subset.</li>
+<li><strong>Four capability states:</strong> UNKNOWN / NOT_YET / DEVELOPING / CONSISTENT, backed internally by belief probabilities/confidence rather than fake precision.</li>
+<li>Capability prerequisite graph with stable IDs/versioning.</li>
+<li><strong>15–25 reusable activity mechanics.</strong></li>
+<li>Activity-to-capability N:M mapping.</li>
+<li>Initial parent check-in taking only a few minutes.</li>
+<li>2–4-question pulse check-ins only when useful.</li>
+<li>Jev inference service that updates only affected capabilities in batch.</li>
+<li>Deterministic frontier + activity filtering.</li>
+<li>Simple parent report explaining strengths, developing areas and why activities were recommended.</li>
+<li><strong>No full psychometric SkillState or classical BKT system required for launch.</strong> Add BKT later only where dense, tagged skill attempts exist.</li>
+</ol></section>
+
+<section id="roadmap"><div class="section-title"><div class="num">22</div><div><h3>Suggested Roadmap</h3></div></div>
+<table><thead><tr><th>Phase</th><th>Focus</th><th>Do not overbuild</th></tr></thead><tbody>
+<tr><td>0 — Inception</td><td>Capability ontology, parent indicators, activity taxonomy, Jev schemas</td><td>Perfect psychometrics</td></tr>
+<tr><td>1 — Prototype</td><td>Check-in → capability map → 3–5 recommended activities</td><td>Hundreds of activities</td></tr>
+<tr><td>2 — Closed pilot</td><td>Question burden, comprehension, recommendation usefulness, Jev validation</td><td>Scientific marketing claims</td></tr>
+<tr><td>3 — Adaptive refinement</td><td>Question selection, DAG tuning, preferences, recurring pulse</td><td>Black-box deep learner model</td></tr>
+<tr><td>4 — Learning validation</td><td>Retention/transfer outcomes and activity effectiveness</td><td>Premature age norms</td></tr>
+<tr><td>5 — Expansion</td><td>Age 3 parent-assisted; ages 8–10; granular SkillState if justified</td><td>Breaking stable IDs/history</td></tr>
+</tbody></table></section>
+
+<section id="openquestions"><div class="section-title"><div class="num">23</div><div><h3>Open Product / Research Questions</h3></div></div>
+<ul>
+<li>Which of the 43 v0.1 Capabilities should be merged/split after parent-distinguishability and recommendation-consequence testing?</li>
+<li>For each Capability, what 3–8 parent-observable Indicators provide the highest information at lowest parent burden?</li>
+<li>What likelihood/transition calibration should the Capability Belief Model use before enough production data exists?</li>
+<li>At what density/quality of in-app Skill telemetry would BKT materially improve the Capability Belief Model?</li>
+<li>How many stable capabilities are enough for v0 without becoming too broad?</li>
+<li>Should answers remain YES / NO / NOT_SURE, or do some indicators benefit materially from SOMETIMES / WITH_HELP?</li>
+<li>What smoothing/transition rules should convert Jev probabilities into stable CapabilityStatus?</li>
+<li>How much child-app telemetry, if any, should supplement parent-only signals?</li>
+<li>How often will parents tolerate pulse questions?</li>
+<li>What should trigger a check-in: uncertainty, staleness, graph leverage, optional activity feedback or parent request?</li>
+<li>Should Jev choose next questions directly or only score a code-generated candidate set?</li>
+<li>How much Skill detail is needed for activity design even if per-child SkillState is postponed?</li>
+<li>Which capability edges are true REQUIRES vs FACILITATES?</li>
+<li>How should conflicting answers over time be handled?</li>
+<li>How should multiple caregivers’ answers be combined?</li>
+<li>What is the minimum content set that makes the first month convincing?</li>
+<li>How should reports communicate uncertainty without feeling indecisive?</li>
+<li>What online/off-screen activity balance gives maximum parent value?</li>
+</ul></section>
+
+<section id="sources"><div class="section-title"><div class="num">24</div><div><h3>Research / Source Registry</h3><div class="small">Re-verify current versions before scientific, legal or marketing reliance.</div></div></div>
+<ul>
+<li>Evidence-Centered Design overview — <a href="https://www.ets.org/Media/Research/pdf/TC-10-07.pdf">ETS</a></li>
+<li>National Research Council, <em>Adding It Up</em> — <a href="https://nap.nationalacademies.org/catalog/9822/adding-it-up-helping-children-learn-mathematics">National Academies</a></li>
+<li>Common Core Standards for Mathematical Practice — <a href="https://www.thecorestandards.org/Math/Practice/">Common Core</a></li>
+<li>pyBKT / Bayesian Knowledge Tracing implementation — <a href="https://github.com/CAHLR/pyBKT">GitHub / CAHLR</a></li>
+<li>Clements & Sarama Learning Trajectories — <a href="https://www.learningtrajectories.org/">learningtrajectories.org</a></li>
+<li>Preschool numeracy scales / early number constructs — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4335720/">PMC4335720</a></li>
+<li>IES early-childhood mathematics guidance — <a href="https://ies.ed.gov/ncee/wwc/earlychildhoodinstruction2">IES / WWC</a></li>
+<li>Common Core Kindergarten Counting & Cardinality — <a href="https://www.thecorestandards.org/Math/Content/K/CC/">Common Core</a></li>
+<li>Ontario Grades 1–8 Mathematics Curriculum — <a href="https://www.ontario.ca/page/math-curriculum-grades-1-8">Ontario</a></li>
+<li>ALEKS / Knowledge Space Theory — <a href="https://www.aleks.com/about_aleks/knowledge_space_theory">ALEKS</a></li>
+<li>Cognitive diagnostic modeling / hierarchical attributes — <a href="https://bpspsychub.onlinelibrary.wiley.com/doi/10.1111/bmsp.70066">Wiley</a></li>
+<li>Knowledge tracing survey — <a href="https://doi.org/10.1145/3569576">ACM</a></li>
+<li>Guided play meta-analysis — <a href="https://pubmed.ncbi.nlm.nih.gov/35018635/">PubMed 35018635</a></li>
+<li>Manipulatives / representations guidance — <a href="https://educationendowmentfoundation.org.uk/early-years/maths/use-manipulatives-and-representations-to-develop-understanding">EEF</a></li>
+<li>TypeSafe — Introducing Jev / System One Models — <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">TypeSafe</a></li>
+<li>TypeSafe Jev API documentation — <a href="https://api.typesafe.ai/docs">API docs</a></li>
+<li>TypeSafe workflow evaluations — <a href="https://evals.typesafe.ai/">Workflow evals</a></li>
+<li>FTC COPPA update — <a href="https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data">FTC</a></li>
+<li>Google Play Families policy — <a href="https://support.google.com/googleplay/android-developer/answer/9893335">Google</a></li>
+<li>Apple App Store Review Guidelines — <a href="https://developer.apple.com/app-store/review/guidelines/">Apple</a></li>
+<li>EU Digital Services Act Q&A — <a href="https://digital-strategy.ec.europa.eu/en/faqs/digital-services-act-questions-and-answers">European Commission</a></li>
+</ul></section>
+
+<section id="handoff"><div class="section-title"><div class="num">25</div><div><h3>AI-Agent / New-Chat Handoff Context</h3></div></div>
+<pre><code>PRODUCT:
+Commercial personalized math / logic learning app for children.
+
+PRIMARY CUSTOMER:
+Parent. Parent burden is a hard product constraint.
+
+INITIAL AGE:
+Likely 4–8; architecture extends roughly 3–10.
+
+CAPABILITY MODEL v0.1:
+43 draft Capabilities across:
+- MATH_CONTENT (34)
+- MATH_THINKING (5)
+- METACOGNITION (4)
+
+FOUNDATIONAL DEFINITIONS:
+Capability = durable transferable state we care about in the child.
+Skill = narrower teachable/practicable component, with exactly one owner Capability.
+Indicator = predefined parent-observable manifestation of a Capability.
+Evidence = actual dated questionnaire/free-text/optional product signal.
+Activity = learning experience; it is NOT required to generate Evidence.
+Evidence may support multiple Capabilities even though Capability definitions should be as exclusive as possible.
+
+UX:
+No required observation after activities.
+Sparse adaptive parent questionnaires.
+Default answers: YES / NO / NOT_SURE.
+NOT_SURE is uncertainty/missing evidence, never negative evidence.
+Free-text observation is optional and may be classified by Jev.
+
+STATE / INFERENCE:
+Capability is the primary learner-state primitive.
+Parent-facing status = UNKNOWN / NOT_YET / DEVELOPING / CONSISTENT.
+Internally maintain belief probabilities, confidence, evidence count, recency/staleness.
+Use Bayesian thinking / a Capability Belief Model for sparse irregular evidence.
+Do NOT use classical BKT as the top-level v1 model.
+BKT may later contribute as one evidence source when dense sequential app attempts are reliably tagged to Skills.
+Missing data should primarily reduce confidence/increase staleness, not automatically lower Capability status.
+
+GRAPH:
+DAG-ish. Only REQUIRES must be acyclic.
+Other edges: FACILITATES / SUPPORTS / TRANSFER_RELATED / PART_OF / RELATED_TO.
+Graph is a prior/readiness model, not a law. Direct evidence can update a Capability even if predecessor states are UNKNOWN.
+Stable IDs, lifecycle status, graph versions and controlled change proposals are required.
+
+ACTIVITIES:
+Map N:M to Capabilities.
+Learning experiences, not compulsory assessments.
+Modes include PLAY_DISCOVER, GUIDED_EXAMPLE, PRACTICE, COMPARE_EXAMPLES,
+STRUCTURE_DISCOVERY, ERRONEOUS_EXAMPLE, CRITIQUE_REASONING, RETRIEVAL,
+TRANSFER, REFLECT_SUMMARIZE, TEACH_BACK, REAL_WORLD_PARENT_ACTIVITY.
+No separate Communication/Social capability family.
+
+JEV:
+Preferred runtime structured classifier for sparse parent signals and candidate scoring.
+Use narrow typed questions; do not ask Jev for one broad learner diagnosis.
+Jev classifies; capability model remembers; ordinary code constrains; policy decides.
+Example free-text classification can independently ask about strategy, AB-02 support, MT-03 support, MC-02 support, and evidence strength.
+
+RECOMMENDER:
+Capability beliefs + graph readiness + uncertainty/staleness + downstream value
+→ VERIFY / INTRODUCE / PRACTICE / EXTEND / REVIEW
+→ deterministic activity filtering
+→ optional Jev scoring of top candidates
+→ parent-friendly recommendation reason.
+
+BUSINESS:
+Parent-paid subscription direction.
+Differentiation = parent-visible mathematical development/thinking insight, not generic AI math.
+Do not optimize screen time as the main metric.
+
+EXCLUSION:
+This document intentionally excludes Dan Wolczuk collaboration/contract analysis.</code></pre></section>
+
+</div></main></div></body></html>

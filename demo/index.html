@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capability Profile Demo</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --surface-2: #f3f2ee;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,0.10);
+  --fam-content: #2a78d6; --fam-thinking: #eb6834; --fam-meta: #1baf7a;
+  --good: #006300; --critical: #d03b3b; --accent: #2a78d6; --accent-ink: #fff;
+  --track: #efeee9;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --surface-2: #222220;
+    --ink: #fff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+    --fam-content: #3987e5; --fam-thinking: #d95926; --fam-meta: #199e70;
+    --good: #0ca30c; --critical: #e66767; --accent: #3987e5; --track: #252523;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --surface-2: #222220;
+  --ink: #fff; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+  --fam-content: #3987e5; --fam-thinking: #d95926; --fam-meta: #199e70;
+  --good: #0ca30c; --critical: #e66767; --accent: #3987e5; --track: #252523;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--surface); }
+header h1 { font-size: 17px; margin: 0; font-weight: 650; }
+header .sub { color: var(--muted); font-size: 12.5px; }
+.badge { font-size: 11.5px; font-weight: 650; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); letter-spacing: .02em; }
+.badge.live { color: var(--good); } .badge.mock { color: var(--critical); }
+main { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 16px; padding: 16px 20px; max-width: 1500px; margin: 0 auto; }
+@media (max-width: 900px) { main { grid-template-columns: 1fr; padding: 12px 16px; } }
+.col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.card h2 { font-size: 13px; margin: 0 0 10px; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); display: flex; align-items: center; gap: 8px; }
+.card h2 .spacer { flex: 1; }
+label { display: block; font-size: 12.5px; color: var(--ink-2); margin: 8px 0 4px; }
+input, select, textarea, button { font: inherit; color: inherit; }
+input, select, textarea { width: 100%; padding: 7px 9px; border: 1px solid var(--axis); border-radius: 7px; background: var(--page); }
+textarea { min-height: 120px; resize: vertical; }
+button { padding: 7px 12px; border-radius: 7px; border: 1px solid var(--axis); background: var(--surface-2); cursor: pointer; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+button:disabled { opacity: .5; cursor: default; }
+button.link { border: 0; background: none; padding: 0; color: var(--accent); cursor: pointer; font-size: 12.5px; }
+.row { display: flex; gap: 8px; align-items: end; }
+.row > * { flex: 1; }
+.row > .shrink { flex: 0 0 auto; }
+.hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
+.err { color: var(--critical); font-size: 12.5px; margin-top: 8px; white-space: pre-wrap; }
+.stats { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 12px; }
+.stat .v { font-size: 22px; font-weight: 650; }
+.stat .k { font-size: 12px; color: var(--muted); }
+.seg { display: inline-flex; border: 1px solid var(--axis); border-radius: 7px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; padding: 4px 10px; font-size: 12.5px; background: none; text-transform: none; letter-spacing: 0; }
+.seg button.on { background: var(--surface-2); font-weight: 650; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); margin-bottom: 10px; }
+.legend i { display: inline-block; width: 12px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+/* chart */
+.chart { position: relative; }
+.axis { display: grid; grid-template-columns: var(--label-w) 1fr 64px; font-size: 11px; color: var(--muted); }
+.axis .ticks { position: relative; height: 16px; }
+.axis .ticks span { position: absolute; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+.chart { --label-w: 270px; }
+@media (max-width: 600px) { .chart { --label-w: 128px; } .bar-row .nm { display: none; } }
+.domain { font-size: 11.5px; font-weight: 650; color: var(--ink-2); margin: 10px 0 2px; text-transform: uppercase; letter-spacing: .04em; }
+.bar-row { display: grid; grid-template-columns: var(--label-w) 1fr 64px; align-items: center; height: 22px; cursor: default; border-radius: 4px; }
+.bar-row:hover { background: var(--surface-2); }
+.bar-row.sel { background: var(--surface-2); outline: 1px solid var(--axis); }
+.bar-row { cursor: pointer; }
+.bar-row.open { background: var(--surface-2); }
+.bar-row.unknown .lab { color: var(--muted); }
+.detail { margin: 2px 0 10px; padding: 12px 14px; border: 1px solid var(--axis); border-radius: 8px; background: var(--surface); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 18px; }
+@media (max-width: 700px) { .detail { grid-template-columns: 1fr; } }
+.detail h5 { margin: 0 0 6px; font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 650; }
+.levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; align-items: end; height: 84px; }
+.levels .lv { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; height: 100%; font-size: 11px; text-align: center; color: var(--ink-2); }
+.levels .lv i { display: block; border-radius: 4px 4px 0 0; min-height: 1px; margin-bottom: 3px; }
+.levels .lv span { font-variant-numeric: tabular-nums; }
+.lvnames { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; font-size: 10.5px; color: var(--muted); text-align: center; border-top: 1px solid var(--axis); padding-top: 3px; }
+.chip { display: inline-block; font-size: 11px; font-weight: 650; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--axis); color: var(--ink-2); }
+.kv { font-size: 12.5px; color: var(--ink-2); margin-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+.kv b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.slider-row { display: flex; gap: 10px; align-items: center; }
+.slider-row input[type=range] { flex: 1; padding: 0; border: 0; background: none; accent-color: var(--accent); }
+.slider-row output { font-variant-numeric: tabular-nums; font-weight: 650; min-width: 38px; text-align: right; }
+.evlist { list-style: none; margin: 8px 0 0; padding: 0; font-size: 12px; max-height: 150px; overflow: auto; }
+.evlist li { padding: 3px 0; border-bottom: 1px solid var(--grid); display: flex; gap: 8px; }
+.evlist li .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink-2); }
+.evlist li .n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.params { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
+.hist li.adj { cursor: default; border-left: 3px solid var(--accent); }
+.bar-row .lab { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12.5px; padding-right: 10px; }
+.bar-row .lab b { font-weight: 600; font-variant-numeric: tabular-nums; margin-right: 6px; }
+.bar-row .nm { color: var(--ink-2); }
+.track { position: relative; height: 12px; background:
+  linear-gradient(to right, var(--grid) 1px, transparent 1px) 0 0 / 25% 100%, var(--track); border-radius: 0 3px 3px 0; border-left: 1px solid var(--axis); }
+.fill, .gain { position: absolute; top: 0; bottom: 0; }
+.fill { left: 0; border-radius: 0 4px 4px 0; }
+.gain { border-radius: 0 4px 4px 0; opacity: .4; border-left: 2px solid var(--surface); }
+.bar-row .val { text-align: right; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.bar-row .val .d { color: var(--good); font-weight: 600; margin-left: 3px; }
+.tip { position: fixed; z-index: 10; pointer-events: none; background: var(--surface); border: 1px solid var(--axis); border-radius: 8px; padding: 9px 11px; max-width: 360px; font-size: 12.5px; box-shadow: 0 6px 20px rgba(0,0,0,.15); display: none; }
+.tip h4 { margin: 0 0 4px; font-size: 13px; }
+.tip .m { color: var(--ink-2); }
+.tip table { border-collapse: collapse; margin-top: 6px; }
+.tip td { padding: 1px 10px 1px 0; font-variant-numeric: tabular-nums; }
+/* scores table */
+table.scores { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.scores th { text-align: left; font-weight: 600; color: var(--muted); font-size: 11.5px; padding: 4px 6px; border-bottom: 1px solid var(--grid); }
+table.scores td { padding: 4px 6px; border-bottom: 1px solid var(--grid); vertical-align: middle; font-variant-numeric: tabular-nums; }
+table.scores tr.dim td { color: var(--muted); }
+.meter { display: inline-block; width: 70px; height: 8px; background: var(--track); border-radius: 0 3px 3px 0; vertical-align: middle; margin-right: 6px; position: relative; }
+.meter span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink-2); border-radius: 0 3px 3px 0; }
+.quote { border-left: 3px solid var(--axis); padding: 4px 10px; margin: 0 0 10px; color: var(--ink-2); white-space: pre-wrap; }
+.acc { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; padding: 8px 10px; background: var(--surface-2); border-radius: 7px; margin-bottom: 10px; }
+.acc b { font-variant-numeric: tabular-nums; }
+.hist { list-style: none; margin: 0; padding: 0; max-height: 420px; overflow: auto; }
+.hist li { padding: 8px 8px; border-radius: 7px; cursor: pointer; border: 1px solid transparent; }
+.hist li:hover { background: var(--surface-2); }
+.hist li.sel { border-color: var(--axis); background: var(--surface-2); }
+.hist .when { font-size: 11.5px; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+.hist .when .spacer { flex: 1; }
+.hist .txt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hist .top { font-size: 11.5px; color: var(--ink-2); margin-top: 2px; }
+pre.raw { max-height: 320px; overflow: auto; background: var(--surface-2); padding: 10px; border-radius: 7px; font-size: 11.5px; }
+details summary { cursor: pointer; color: var(--ink-2); font-size: 12.5px; }
+.empty { color: var(--muted); padding: 20px 0; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Capability Profile Demo</h1>
+    <div class="sub">Parent observation → Jev 43-capability support → Bayesian belief update</div>
+  </div>
+  <span id="modeBadge" class="badge"></span>
+</header>
+
+<main>
+  <div class="col">
+    <section class="card">
+      <h2>Child</h2>
+      <label for="childSel">Select existing</label>
+      <select id="childSel"></select>
+      <div class="row" style="margin-top:6px">
+        <div><label for="newName">Or add a new child</label><input id="newName" placeholder="Name"></div>
+        <div class="shrink" style="width:70px"><label for="newAge">Age</label><input id="newAge" type="number" min="2" max="12" placeholder="—"></div>
+        <button class="shrink" id="addChild">Add</button>
+      </div>
+      <div id="childInfo" class="hint"></div>
+    </section>
+
+    <section class="card">
+      <h2>New observation</h2>
+      <textarea id="obsText" placeholder="e.g. She said 8+5 is 13 because she made 10 first." disabled></textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="primary" id="submitObs" disabled>Score &amp; update</button>
+        <button class="shrink link" id="previewPayload" type="button">Preview Jev payload</button>
+      </div>
+      <div class="hint">Ctrl+Enter to submit. Only the observation and age go to Jev; the child's name stays local.</div>
+      <div id="obsErr" class="err"></div>
+    </section>
+
+    <section class="card">
+      <h2>Belief model</h2>
+      <div class="params" id="params"></div>
+      <div class="row" style="margin-top:10px">
+        <button id="applyParams" disabled>Replay history</button>
+        <button id="resetParams" disabled>Defaults</button>
+      </div>
+      <div class="hint"><b>Capability Belief Tracing.</b> Each capability has a hidden level (Not yet → Emerging → Developing → Secure → Consistent) and a probability for each level. Jev's P(true) is treated as soft evidence: the higher it is above the noise floor π, the more it shifts probability toward the higher levels. At or below π it does nothing, and it is never negative. Maturity = expected level ÷ 4. Between evidence events, a capability slowly drifts up (learning) and its confidence fades (staleness). Click any bar to see its level distribution or to set it by hand. Details: <code>Capability_Belief_Model_Research.md</code>.</div>
+    </section>
+
+    <section class="card">
+      <h2>History <span class="spacer"></span><button class="link" id="viewLog">Open .md log</button></h2>
+      <ul class="hist" id="hist"></ul>
+    </section>
+  </div>
+
+  <div class="col">
+    <section class="card">
+      <h2>Capability maturity <span class="spacer"></span>
+        <span class="seg" id="sortSeg"><button data-s="ontology" class="on">Ontology order</button><button data-s="maturity">By maturity</button></span>
+      </h2>
+      <div class="stats" id="stats"></div>
+      <div class="legend">
+        <span><i style="background:var(--fam-content)"></i>Math Content</span>
+        <span><i style="background:var(--fam-thinking)"></i>Mathematical Thinking</span>
+        <span><i style="background:var(--fam-meta)"></i>Metacognition</span>
+        <span><i style="background:var(--ink-2);opacity:.4"></i>Gain from selected observation</span>
+        <span style="color:var(--muted)">Click a bar to inspect or adjust</span>
+      </div>
+      <div class="chart" id="chart"></div>
+    </section>
+
+    <section class="card" id="scoreCard">
+      <h2><span id="scoreTitle">Jev scoring</span><span class="spacer"></span>
+        <label style="margin:0;display:flex;gap:5px;align-items:center;text-transform:none;letter-spacing:0;font-weight:400">
+          <input type="checkbox" id="showAll" style="width:auto"> all 43</label>
+      </h2>
+      <div id="scoreBody"><div class="empty">Submit or select an observation to see how Jev scored it.</div></div>
+    </section>
+  </div>
+</main>
+<div class="tip" id="tip"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const FAM_VAR = { MATH_CONTENT: '--fam-content', MATH_THINKING: '--fam-thinking', METACOGNITION: '--fam-meta' };
+const FAM_NAME = { MATH_CONTENT: 'Math Content', MATH_THINKING: 'Mathematical Thinking', METACOGNITION: 'Metacognition' };
+const LABEL_THRESHOLD = 0.5; // P(true) at which Jev "says yes" for accuracy counting
+let META, CHILD = null, SEL_OBS = null, SORT = 'ontology', PENDING_EXPECTED = null, OPEN_CAP = new URLSearchParams(location.search).get('open');
+const STATUS_LABEL = { UNKNOWN: 'Unknown', NOT_YET: 'Not yet', DEVELOPING: 'Developing', CONSISTENT: 'Consistent' };
+const pct = x => Math.round(x * 100) + '%';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmtTime = iso => new Date(iso).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+
+async function api(method, url, body) {
+  const r = await fetch(url, { method, headers: body ? { 'Content-Type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined });
+  const ct = r.headers.get('content-type') || '';
+  const data = ct.includes('json') ? await r.json() : await r.text();
+  if (!r.ok) throw new Error(data.error || data || r.statusText);
+  return data;
+}
+
+async function init() {
+  META = await api('GET', '/api/meta');
+  const b = $('#modeBadge');
+  b.textContent = META.mode === 'live' ? 'JEV LIVE' : 'MOCK SCORER';
+  b.className = 'badge ' + META.mode;
+  b.title = META.mode === 'live' ? 'Scoring with the Jev API' : 'Keyword mock — set JEV_API_URL in demo/.env for real Jev scoring';
+  await refreshChildren();
+  const last = new URLSearchParams(location.search).get('child') || localGet('child');
+  if (last && [...$('#childSel').options].some(o => o.value === last)) await loadChild(last);
+  else render();
+}
+function localGet(k) { try { return localStorage.getItem('mb.' + k); } catch { return null; } }
+function localSet(k, v) { try { localStorage.setItem('mb.' + k, v); } catch {} }
+
+async function refreshChildren() {
+  const list = await api('GET', '/api/children');
+  $('#childSel').innerHTML = '<option value="">— choose a child —</option>' +
+    list.map(c => `<option value="${esc(c.slug)}">${esc(c.name)}${c.age ? ' (' + c.age + ')' : ''} · ${c.observations} obs</option>`).join('');
+  if (CHILD) $('#childSel').value = CHILD.slug;
+}
+
+async function loadChild(slug) {
+  if (!slug) { CHILD = null; SEL_OBS = null; render(); return; }
+  CHILD = await api('GET', '/api/children/' + encodeURIComponent(slug));
+  SEL_OBS = CHILD.observations.at(-1)?.id || null;
+  localSet('child', slug);
+  $('#childSel').value = slug;
+  render();
+}
+
+function setChild(child, keepSel) {
+  CHILD = child;
+  if (!keepSel || !CHILD.observations.some(o => o.id === SEL_OBS)) SEL_OBS = CHILD.observations.at(-1)?.id || null;
+  render();
+}
+
+function render() {
+  const has = !!CHILD;
+  $('#obsText').disabled = $('#submitObs').disabled = $('#applyParams').disabled = !has;
+  $('#childInfo').innerHTML = has
+    ? `Age: <input id="ageEdit" type="number" min="2" max="12" value="${CHILD.age ?? ''}" style="width:64px;padding:2px 6px"> · profile created ${fmtTime(CHILD.created_at)}`
+    : 'Pick or add a child. Every new profile starts with all 43 capabilities at 0%.';
+  if (has) $('#ageEdit').onchange = async e => setChild(await api('PATCH', '/api/children/' + CHILD.slug, { age: e.target.value }), true);
+  $('#resetParams').disabled = !has;
+  const p = has ? CHILD.model_params : META.default_params;
+  $('#params').innerHTML = Object.entries(META.param_info).map(([k, lab]) =>
+    `<div><label for="p_${k}">${esc(lab)}</label><input id="p_${k}" data-k="${k}" type="number" step="any" value="${p[k]}"></div>`).join('');
+  renderStats(); renderChart(); renderHistory(); renderScores();
+}
+
+function selObs() { return CHILD?.observations.find(o => o.id === SEL_OBS) || null; }
+
+function renderStats() {
+  if (!CHILD) { $('#stats').innerHTML = ''; return; }
+  const caps = Object.values(CHILD.capabilities);
+  const withEv = caps.filter(c => c.evidence_count > 0).length;
+  const mean = caps.reduce((a, c) => a + c.maturity, 0) / caps.length;
+  const cnt = st => caps.filter(c => c.status === st).length;
+  $('#stats').innerHTML = [
+    [CHILD.observations.length, 'observations'],
+    [withEv + ' / 43', 'capabilities with evidence'],
+    [pct(mean), 'mean maturity'],
+    [`${cnt('CONSISTENT')} · ${cnt('DEVELOPING')} · ${cnt('NOT_YET')}`, 'consistent · developing · not yet'],
+  ].map(([v, k]) => `<div class="stat"><div class="v">${esc(v)}</div><div class="k">${k}</div></div>`).join('');
+}
+
+function deltaTag(d) {
+  const x = Math.round((d.after - d.before) * 100);
+  return x ? `<span class="d" style="${x < 0 ? 'color:var(--critical)' : ''}">${x > 0 ? '+' : ''}${x}</span>` : '';
+}
+
+// Every event (observation or parent adjustment) that moved this capability, newest first.
+function capEvents(id) {
+  const ev = [
+    ...CHILD.observations.filter(o => o.deltas?.[id]).map(o => ({ at: o.datetime, text: o.text, d: o.deltas[id] })),
+    ...(CHILD.adjustments || []).filter(a => a.deltas?.[id]).map(a => ({ at: a.datetime, text: 'Parent set to ' + pct(a.value) + (a.note ? ' — ' + a.note : ''), d: a.deltas[id], adj: true })),
+  ];
+  return ev.sort((a, b) => b.at.localeCompare(a.at));
+}
+
+function detail(c) {
+  const s = CHILD.capabilities[c.id];
+  const color = `var(${FAM_VAR[c.family]})`;
+  const maxB = Math.max(...s.belief);
+  const ev = capEvents(c.id);
+  const stale = s.last_evidence_at ? Math.round((Date.now() - new Date(s.last_evidence_at)) / 86400000) : null;
+  return `<div class="detail" data-for="${c.id}">
+    <div>
+      <h5>Belief over levels</h5>
+      <div class="levels">${s.belief.map(x => `<div class="lv"><span>${Math.round(x * 100)}%</span><i style="height:${(x / maxB) * 56}px;background:${color}"></i></div>`).join('')}</div>
+      <div class="lvnames">${META.levels.map(l => `<span>${esc(l)}</span>`).join('')}</div>
+      <div class="kv"><span class="chip">${STATUS_LABEL[s.status]}</span>
+        <span>maturity <b>${s.evidence_count === 0 ? '—' : pct(s.maturity)}</b></span>
+        <span>confidence <b>${pct(s.confidence)}</b></span>
+        <span>evidence <b>${s.evidence_count}</b></span>
+        <span>last <b>${stale === null ? '—' : stale === 0 ? 'today' : stale + 'd ago'}</b></span></div>
+      <div style="margin-top:8px;font-size:12.5px;color:var(--ink-2)">${esc(c.definition)}</div>
+      <div style="margin-top:4px;font-size:12px;color:var(--muted)"><b>Boundary:</b> ${esc(c.boundary)}</div>
+    </div>
+    <div>
+      <h5>Parent adjustment</h5>
+      <div class="slider-row"><input type="range" min="0" max="1" step="0.01" value="${s.maturity.toFixed(2)}" id="adjRange"><output id="adjOut">${pct(s.maturity)}</output></div>
+      <div class="row" style="margin-top:6px"><input id="adjNote" placeholder="Why? (optional)"><button class="shrink primary" id="adjSet">Set</button></div>
+      <div class="hint">Sets this capability's belief so its mean is the slider value. Later observations continue from here. Undo it under History → remove.</div>
+      <h5 style="margin-top:12px">Evidence trail (${ev.length})</h5>
+      ${ev.length ? `<ul class="evlist">${ev.map(e => `<li><span class="n">${fmtTime(e.at)}</span><span class="t" title="${esc(e.text)}">${e.adj ? '✎ ' : ''}${esc(e.text)}</span><span class="n">${e.d.support !== undefined ? 'P ' + e.d.support.toFixed(2) + ' · ' : ''}${pct(e.d.before)}→${pct(e.d.after)}</span></li>`).join('')}</ul>` : '<div class="hint">No evidence yet.</div>'}
+    </div></div>`;
+}
+
+function renderChart() {
+  const el = $('#chart');
+  if (!CHILD) { el.innerHTML = '<div class="empty">No child selected.</div>'; return; }
+  const obs = selObs();
+  const deltas = obs?.deltas || {};
+  const axis = `<div class="axis"><span></span><div class="ticks">${[0, 25, 50, 75, 100].map(t => `<span style="left:${t}%">${t}%</span>`).join('')}</div><span></span></div>`;
+  const row = c => {
+    const s = CHILD.capabilities[c.id], d = deltas[c.id];
+    const color = `var(${FAM_VAR[c.family]})`;
+    // Draw the selected observation's gain only while it is still the last event that moved this capability.
+    const fresh = d && Math.abs(d.after - s.maturity) < 1e-9;
+    const solid = fresh ? d.before : s.maturity;
+    const gain = fresh ? Math.max(0, d.after - d.before) : 0;
+    return `<div class="bar-row${d ? ' sel' : ''}${OPEN_CAP === c.id ? ' open' : ''}${s.evidence_count === 0 ? ' unknown' : ''}" data-id="${c.id}">
+      <div class="lab"><b>${c.id}</b><span class="nm">${esc(c.name)}</span></div>
+      <div class="track"><div class="fill" style="width:${solid * 100}%;background:${color}"></div>${gain > 0 ? `<div class="gain" style="left:${solid * 100}%;width:${gain * 100}%;background:${color}"></div>` : ''}</div>
+      <div class="val">${s.evidence_count === 0 ? '—' : pct(s.maturity)}${d ? deltaTag(d) : ''}</div></div>` + (OPEN_CAP === c.id ? detail(c) : '');
+  };
+  let html = axis;
+  if (SORT === 'maturity') {
+    html += [...META.capabilities].sort((a, b) => CHILD.capabilities[b.id].maturity - CHILD.capabilities[a.id].maturity || a.id.localeCompare(b.id)).map(row).join('');
+  } else {
+    let dom = null;
+    for (const c of META.capabilities) {
+      if (c.domain !== dom) { dom = c.domain; html += `<div class="domain">${esc(dom)}</div>`; }
+      html += row(c);
+    }
+  }
+  el.innerHTML = html;
+}
+
+// hover tooltip on chart rows
+$('#chart').addEventListener('mousemove', e => {
+  const r = e.target.closest('.bar-row'); const tip = $('#tip');
+  if (r && OPEN_CAP === r.dataset.id) { tip.style.display = 'none'; return; }
+  if (!r || !CHILD) { tip.style.display = 'none'; return; }
+  const c = META.capabilities.find(x => x.id === r.dataset.id), s = CHILD.capabilities[c.id];
+  const d = selObs()?.deltas?.[c.id];
+  tip.innerHTML = `<h4>${c.id} — ${esc(c.name)}</h4><div class="m">${esc(FAM_NAME[c.family])} · ${esc(c.domain)}</div>
+    <div style="margin-top:6px">${esc(c.definition)}</div>
+    <table><tr><td>Status</td><td><b>${STATUS_LABEL[s.status]}</b>${s.adjusted ? ' (parent-adjusted)' : ''}</td></tr>
+    <tr><td>Maturity</td><td><b>${s.evidence_count === 0 ? '—' : pct(s.maturity)}</b> · confidence ${pct(s.confidence)}</td></tr>
+    <tr><td>Evidence events</td><td>${s.evidence_count}</td></tr>
+    <tr><td>Levels</td><td>${s.belief.map(x => Math.round(x * 100)).join(' / ')} %</td></tr>
+    <tr><td>Last evidence</td><td>${s.last_evidence_at ? fmtTime(s.last_evidence_at) : '—'}</td></tr>
+    ${d ? `<tr><td>Selected obs</td><td>P(true) ${d.support.toFixed(2)} · strength ×${d.lr.toFixed(1)} · ${pct(d.before)} → ${pct(d.after)}</td></tr>` : ''}</table>
+    <div class="m" style="margin-top:4px">Click to inspect / adjust</div>`;
+  tip.style.display = 'block';
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+  const y = e.clientY + 14 + tip.offsetHeight > innerHeight ? e.clientY - tip.offsetHeight - 10 : e.clientY + 14;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+});
+$('#chart').addEventListener('mouseleave', () => $('#tip').style.display = 'none');
+$('#chart').addEventListener('click', async e => {
+  if (e.target.id === 'adjSet') {
+    e.target.disabled = true;
+    try {
+      setChild(await api('POST', `/api/children/${CHILD.slug}/adjustments`,
+        { capability_id: OPEN_CAP, value: +$('#adjRange').value, note: $('#adjNote').value }), true);
+    } catch (err) { $('#obsErr').textContent = err.message; e.target.disabled = false; }
+    return;
+  }
+  const r = e.target.closest('.bar-row');
+  if (!r) return;
+  OPEN_CAP = OPEN_CAP === r.dataset.id ? null : r.dataset.id;
+  $('#tip').style.display = 'none';
+  renderChart();
+});
+$('#chart').addEventListener('input', e => { if (e.target.id === 'adjRange') $('#adjOut').textContent = pct(+e.target.value); });
+
+function renderHistory() {
+  const el = $('#hist');
+  const adjs = CHILD?.adjustments || [];
+  if (!CHILD || !(CHILD.observations.length + adjs.length)) { el.innerHTML = '<li class="empty" style="cursor:default">No observations yet.</li>'; return; }
+  const items = [...CHILD.observations.map(o => ({ at: o.datetime, o })), ...adjs.map(a => ({ at: a.datetime, a }))]
+    .sort((x, y) => y.at.localeCompare(x.at));
+  el.innerHTML = items.map(({ o, a }) => {
+    if (a) {
+      const c = META.capabilities.find(x => x.id === a.capability_id);
+      return `<li class="adj"><div class="when">${fmtTime(a.datetime)} · parent adjustment<span class="spacer"></span>
+        <button class="link del" data-id="${a.id}" data-kind="adjustments" title="Remove and replay history">remove</button></div>
+        <div class="txt">${a.capability_id} ${esc(c?.name || '')} → ${pct(a.value)}${a.note ? ' — ' + esc(a.note) : ''}</div></li>`;
+    }
+    const top = Object.entries(o.scores).sort((a, b) => b[1] - a[1]).slice(0, 3).filter(([, s]) => s >= 0.2)
+      .map(([id, s]) => `${id} ${s.toFixed(2)}`).join(' · ') || 'no capability supported';
+    return `<li data-id="${o.id}" class="${o.id === SEL_OBS ? 'sel' : ''}">
+      <div class="when">${fmtTime(o.datetime)} · ${o.jev.mode}${o.expected ? ' · labeled' : ''}<span class="spacer"></span>
+        <button class="link del" data-id="${o.id}" data-kind="observations" title="Remove and replay history">remove</button></div>
+      <div class="txt">${esc(o.text)}</div><div class="top">${top}</div></li>`;
+  }).join('');
+}
+$('#hist').addEventListener('click', async e => {
+  const del = e.target.closest('.del');
+  if (del) {
+    e.stopPropagation();
+    if (del.dataset.armed) { setChild(await api('DELETE', `/api/children/${CHILD.slug}/${del.dataset.kind}/${del.dataset.id}`), true); refreshChildren(); }
+    else { del.dataset.armed = 1; del.textContent = 'click again to remove'; setTimeout(() => { if (del.isConnected) { delete del.dataset.armed; del.textContent = 'remove'; } }, 3000); }
+    return;
+  }
+  const li = e.target.closest('li[data-id]:not(.adj)');
+  if (li) { SEL_OBS = li.dataset.id; PENDING_EXPECTED = null; render(); }
+});
+
+function accuracy(obsList) {
+  let tp = 0, fp = 0, fn = 0, n = 0;
+  for (const o of obsList) {
+    if (!o.expected) continue; n++;
+    const exp = new Set(o.expected);
+    for (const id in o.scores) {
+      const yes = o.scores[id] >= LABEL_THRESHOLD;
+      if (yes && exp.has(id)) tp++; else if (yes) fp++; else if (exp.has(id)) fn++;
+    }
+  }
+  return { tp, fp, fn, n, precision: tp + fp ? tp / (tp + fp) : null, recall: tp + fn ? tp / (tp + fn) : null };
+}
+const fmtRate = x => x == null ? '—' : pct(x);
+
+function renderScores() {
+  const o = selObs();
+  if (!o) { $('#scoreTitle').textContent = 'Jev scoring'; $('#scoreBody').innerHTML = '<div class="empty">Submit or select an observation to see how Jev scored it.</div>'; return; }
+  $('#scoreTitle').textContent = `Jev scoring · ${fmtTime(o.datetime)} · ${o.jev.mode} · ${(o.jev.ms / 1000).toFixed(1)}s`;
+  const exp = new Set(PENDING_EXPECTED ?? o.expected ?? []);
+  const showAll = $('#showAll').checked;
+  const rows = META.capabilities.map(c => ({ c, s: o.scores[c.id] ?? 0, d: o.deltas?.[c.id] }))
+    .sort((a, b) => b.s - a.s)
+    .filter(r => showAll || r.s >= 0.05 || exp.has(r.c.id));
+  const a1 = accuracy([{ ...o, expected: PENDING_EXPECTED ?? o.expected }]), aAll = accuracy(CHILD.observations);
+  const dirty = PENDING_EXPECTED !== null;
+  let html = `<blockquote class="quote">${esc(o.text)}</blockquote>
+    <div class="acc">
+      <span>Tick <b>Expected</b> for capabilities you believe this observation genuinely supports (gold labels), then save.</span>
+      <span>This obs @ P ≥ ${LABEL_THRESHOLD}: precision <b>${o.expected || dirty ? fmtRate(a1.precision) : '—'}</b>, recall <b>${o.expected || dirty ? fmtRate(a1.recall) : '—'}</b></span>
+      <span>All ${aAll.n} labeled obs: precision <b>${fmtRate(aAll.precision)}</b>, recall <b>${fmtRate(aAll.recall)}</b> (TP ${aAll.tp}, FP ${aAll.fp}, FN ${aAll.fn})</span>
+      <button id="saveExp" ${dirty ? '' : 'disabled'} style="padding:3px 10px">Save labels</button>
+    </div>`;
+  if (!rows.length) html += '<div class="empty">Jev gave every capability P(true) &lt; 0.05 — this observation supports nothing. Tick "all 43" to label anyway.</div>';
+  else html += `<table class="scores"><thead><tr><th>Expected</th><th>Capability</th><th>P(true)</th><th title="Likelihood ratio, Consistent vs Not yet">Strength</th><th>Maturity change</th></tr></thead><tbody>` +
+    rows.map(({ c, s, d }) => {
+      const miss = exp.has(c.id) !== (s >= LABEL_THRESHOLD);
+      return `<tr class="${s <= CHILD.model_params.noise_floor && !exp.has(c.id) ? 'dim' : ''}">
+        <td><input type="checkbox" class="exp" data-id="${c.id}" ${exp.has(c.id) ? 'checked' : ''} style="width:auto"></td>
+        <td><b>${c.id}</b> ${esc(c.name)} <span style="color:var(--muted)">· ${esc(FAM_NAME[c.family])}</span></td>
+        <td><span class="meter"><span style="width:${s * 100}%"></span></span>${s.toFixed(2)}${(o.expected || dirty) && miss ? ` <span style="color:var(--critical)" title="${exp.has(c.id) ? 'Missed by Jev' : 'Jev false positive'}">✕ ${exp.has(c.id) ? 'miss' : 'FP'}</span>` : ''}</td>
+        <td>${d ? '×' + d.lr.toFixed(1) : '—'}</td>
+        <td>${d ? `${pct(d.before)} → ${pct(d.after)}` : '—'}</td></tr>`;
+    }).join('') + '</tbody></table>';
+  if (o.raw) html += `<details style="margin-top:10px"><summary>Raw Jev response</summary><pre class="raw">${esc(JSON.stringify(o.raw, null, 2))}</pre></details>`;
+  $('#scoreBody').innerHTML = html;
+  $('#saveExp')?.addEventListener('click', async () => {
+    setChild(await api('PUT', `/api/children/${CHILD.slug}/observations/${o.id}/expected`, { expected: [...exp] }), true);
+    PENDING_EXPECTED = null; render();
+  });
+}
+$('#scoreBody').addEventListener('change', e => {
+  if (!e.target.classList.contains('exp')) return;
+  const o = selObs();
+  const set = new Set(PENDING_EXPECTED ?? o.expected ?? []);
+  e.target.checked ? set.add(e.target.dataset.id) : set.delete(e.target.dataset.id);
+  PENDING_EXPECTED = [...set];
+  renderScores();
+});
+$('#showAll').onchange = renderScores;
+
+$('#childSel').onchange = e => { PENDING_EXPECTED = null; loadChild(e.target.value); };
+$('#addChild').onclick = async () => {
+  const name = $('#newName').value.trim();
+  if (!name) return $('#newName').focus();
+  const child = await api('POST', '/api/children', { name, age: $('#newAge').value });
+  $('#newName').value = $('#newAge').value = '';
+  await refreshChildren(); await loadChild(child.slug);
+};
+$('#newName').onkeydown = e => { if (e.key === 'Enter') $('#addChild').click(); };
+
+async function submitObs() {
+  const text = $('#obsText').value.trim();
+  if (!text || !CHILD) return;
+  const btn = $('#submitObs');
+  btn.disabled = true; btn.textContent = 'Scoring 43 capabilities…'; $('#obsErr').textContent = '';
+  try {
+    const { child, observation_id } = await api('POST', `/api/children/${CHILD.slug}/observations`, { text });
+    CHILD = child; SEL_OBS = observation_id; PENDING_EXPECTED = null;
+    $('#obsText').value = '';
+    render(); refreshChildren();
+  } catch (e) { $('#obsErr').textContent = e.message; }
+  finally { btn.disabled = false; btn.textContent = 'Score & update'; }
+}
+$('#submitObs').onclick = submitObs;
+$('#obsText').onkeydown = e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) submitObs(); };
+
+$('#applyParams').onclick = async () => {
+  const mp = {};
+  document.querySelectorAll('#params input').forEach(i => mp[i.dataset.k] = i.value);
+  setChild(await api('PATCH', '/api/children/' + CHILD.slug, { model_params: { ...CHILD.model_params, ...mp } }), true);
+};
+$('#resetParams').onclick = async () => setChild(await api('PATCH', '/api/children/' + CHILD.slug, { model_params: 'default' }), true);
+$('#viewLog').onclick = () => { if (CHILD) window.open('/api/children/' + encodeURIComponent(CHILD.slug) + '/log', '_blank'); };
+$('#previewPayload').onclick = () => {
+  const q = new URLSearchParams({ text: $('#obsText').value || '<parent observation>', age: CHILD?.age || '' });
+  window.open('/api/payload-preview?' + q, '_blank');
+};
+document.querySelectorAll('#sortSeg button').forEach(b => b.onclick = () => {
+  SORT = b.dataset.s; document.querySelectorAll('#sortSeg button').forEach(x => x.classList.toggle('on', x === b)); renderChart();
+});
+
+init().catch(e => { document.body.insertAdjacentHTML('afterbegin', `<div class="err" style="padding:12px 20px">Failed to start: ${esc(e.message)}</div>`); });
+</script>
+</body>
+</html>

@@ -1,0 +1,803 @@
+{
+  "model": "APP Capability Model",
+  "version": "0.1",
+  "status": "FIRST_DRAFT",
+  "capability_count": 43,
+  "capabilities": [
+    {
+      "capability_id": "NQ-01",
+      "family": "MATH_CONTENT",
+      "domain": "Number & Quantity",
+      "name": "Quantity as a Set Property",
+      "formal_definition": "Understands that a collection has a quantity that is preserved across irrelevant changes in spacing, arrangement, or object appearance.",
+      "owned_skill_families": [
+        "small-set subitizing",
+        "quantity conservation under rearrangement",
+        "one-to-one matching of equal-sized sets",
+        "recognizing same/different numerosity without symbols"
+      ],
+      "boundary_exclusion": "Does not cover the counting procedure itself, written numerals, or numerical ordering.",
+      "sample_parent_indicator": "If you spread the same few objects farther apart without adding or removing any, does your child usually understand that there are still the same number?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "NQ-02",
+      "family": "MATH_CONTENT",
+      "domain": "Number & Quantity",
+      "name": "Counting & Cardinality",
+      "formal_definition": "Uses the counting system to determine or construct an exact quantity and understands that the final count word represents the total.",
+      "owned_skill_families": [
+        "stable verbal count sequence",
+        "one-to-one correspondence",
+        "cardinal last-word principle",
+        "producing a requested number of objects",
+        "counting from a given starting number",
+        "tracking already-counted objects"
+      ],
+      "boundary_exclusion": "Does not primarily cover written numeral recognition, magnitude comparison, or arithmetic transformation.",
+      "sample_parent_indicator": "After counting a group of toys, if you ask “How many are there?”, does your child usually tell you the total without starting the count again?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "NQ-03",
+      "family": "MATH_CONTENT",
+      "domain": "Number & Quantity",
+      "name": "Numeral–Quantity Mapping",
+      "formal_definition": "Connects spoken and written number symbols with the exact quantities they denote.",
+      "owned_skill_families": [
+        "written numeral recognition",
+        "spoken number to numeral",
+        "numeral to set",
+        "set to numeral",
+        "matching equivalent symbolic and non-symbolic quantities"
+      ],
+      "boundary_exclusion": "Does not cover relative magnitude/order or the mechanics of counting a collection.",
+      "sample_parent_indicator": "If you show a written number such as 7, can your child usually make or choose a group with exactly that many objects?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "NQ-04",
+      "family": "MATH_CONTENT",
+      "domain": "Number & Quantity",
+      "name": "Magnitude, Order & Number-Line Relations",
+      "formal_definition": "Understands relative numerical size, sequence position, and spatial/order relationships among numbers.",
+      "owned_skill_families": [
+        "greater-than/less-than comparison",
+        "ordering numbers",
+        "ordinal position",
+        "number-line placement",
+        "benchmarking and approximate position"
+      ],
+      "boundary_exclusion": "Does not cover numeral identification alone or composing numbers into parts.",
+      "sample_parent_indicator": "Can your child usually tell which of two familiar numbers is larger even when the difference is small, such as 8 and 9?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "NQ-05",
+      "family": "MATH_CONTENT",
+      "domain": "Number & Quantity",
+      "name": "Number Composition & Part–Whole Structure",
+      "formal_definition": "Understands a number as a whole that can be composed from and decomposed into parts in multiple equivalent ways.",
+      "owned_skill_families": [
+        "part–whole relations",
+        "number bonds",
+        "complements",
+        "multiple decompositions",
+        "recomposition",
+        "missing-part reasoning"
+      ],
+      "boundary_exclusion": "Does not cover solving additive situations as the main goal; it is about the internal structure of a number.",
+      "sample_parent_indicator": "If you ask for different ways to make 8 using two groups, can your child usually find more than one combination?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "AB-01",
+      "family": "MATH_CONTENT",
+      "domain": "Additive & Base-Ten Reasoning",
+      "name": "Additive Situation Structure",
+      "formal_definition": "Understands the semantic structures represented by joining, separating, changing, comparing, and part–part–whole additive situations.",
+      "owned_skill_families": [
+        "recognizing join/separate/change/compare situations",
+        "identifying the unknown quantity",
+        "connecting story structure to addition or subtraction",
+        "distinguishing result-unknown from change/start-unknown situations"
+      ],
+      "boundary_exclusion": "Does not cover general cross-domain modeling or calculation strategy efficiency.",
+      "sample_parent_indicator": "When you describe a simple story where some objects are added, taken away, or compared, can your child usually tell what quantity needs to be found?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "AB-02",
+      "family": "MATH_CONTENT",
+      "domain": "Additive & Base-Ten Reasoning",
+      "name": "Additive Relations & Calculation",
+      "formal_definition": "Determines sums and differences and reasons about additive relationships using increasingly structured and efficient strategies.",
+      "owned_skill_families": [
+        "count-all",
+        "count-on/count-back",
+        "doubles and near-doubles",
+        "make-ten",
+        "derived facts",
+        "compensation",
+        "addition–subtraction inverse relationship"
+      ],
+      "boundary_exclusion": "Does not cover place-value structure or merely identifying whether a story is additive.",
+      "sample_parent_indicator": "If your child does not immediately know an addition answer, can they often work it out using a useful strategy instead of recounting everything from 1?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "AB-03",
+      "family": "MATH_CONTENT",
+      "domain": "Additive & Base-Ten Reasoning",
+      "name": "Base-Ten Unitization & Place Value",
+      "formal_definition": "Understands that ten lower-order units can be treated as one higher-order unit and that digit position represents units of different sizes.",
+      "owned_skill_families": [
+        "bundling ten ones",
+        "tens and ones",
+        "place-value decomposition",
+        "expanded form",
+        "representing numbers with grouped units",
+        "zero as placeholder"
+      ],
+      "boundary_exclusion": "Does not cover multi-digit addition/subtraction procedures themselves.",
+      "sample_parent_indicator": "If you show 34 as 3 groups of ten and 4 single objects, does your child understand that both representations mean the same number?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "AB-04",
+      "family": "MATH_CONTENT",
+      "domain": "Additive & Base-Ten Reasoning",
+      "name": "Multi-Digit Additive Reasoning",
+      "formal_definition": "Uses base-ten structure to reason about and calculate multi-digit addition and subtraction.",
+      "owned_skill_families": [
+        "adding/subtracting tens and ones",
+        "regrouping",
+        "partial sums/differences",
+        "compensation",
+        "place-value algorithms",
+        "checking reasonableness of multi-digit results"
+      ],
+      "boundary_exclusion": "Does not cover the underlying place-value concept in isolation.",
+      "sample_parent_indicator": "When adding numbers such as 27 + 15, does your child use tens and ones or another structured method rather than counting one by one?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MR-01",
+      "family": "MATH_CONTENT",
+      "domain": "Multiplicative Reasoning",
+      "name": "Equal Groups, Arrays & Multiplication",
+      "formal_definition": "Understands multiplication as coordinated equal groups, arrays, and composite units rather than only repeated counting.",
+      "owned_skill_families": [
+        "forming equal groups",
+        "arrays",
+        "repeated addition as a bridge",
+        "multiplication expressions",
+        "commutativity through arrays",
+        "derived multiplication facts"
+      ],
+      "boundary_exclusion": "Does not cover fair sharing/grouping division or multiplicative comparison such as “three times as many.”",
+      "sample_parent_indicator": "If there are 4 bags with 3 objects in each, can your child reason about 4 groups of 3 without counting all 12 objects individually?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MR-02",
+      "family": "MATH_CONTENT",
+      "domain": "Multiplicative Reasoning",
+      "name": "Division, Sharing & Grouping",
+      "formal_definition": "Understands division as equal sharing or determining how many equal groups can be formed.",
+      "owned_skill_families": [
+        "fair sharing",
+        "measurement/grouping division",
+        "inverse relation with multiplication",
+        "interpreting remainders",
+        "finding unknown group size or group count"
+      ],
+      "boundary_exclusion": "Does not cover multiplication as the primary structure or scaling comparisons.",
+      "sample_parent_indicator": "If 12 objects must be shared equally among 3 people, can your child usually reason out how many each person receives?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MR-03",
+      "family": "MATH_CONTENT",
+      "domain": "Multiplicative Reasoning",
+      "name": "Multiplicative Comparison & Scaling",
+      "formal_definition": "Understands multiplicative relationships in which one quantity is a scale factor or multiple of another.",
+      "owned_skill_families": [
+        "twice/half as much",
+        "three times as many",
+        "scale factor",
+        "doubling/halving",
+        "ratio precursors",
+        "distinguishing additive from multiplicative comparison"
+      ],
+      "boundary_exclusion": "Does not cover equal-group multiplication when no comparison or scaling relation is involved.",
+      "sample_parent_indicator": "If one tower is 4 blocks tall and another is twice as tall, does your child understand the second tower should be 8 blocks rather than 6?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "RD-01",
+      "family": "MATH_CONTENT",
+      "domain": "Fractions & Decimals",
+      "name": "Equal Partition & Unit Fraction",
+      "formal_definition": "Understands that a defined whole can be partitioned into equal shares and that one equal share represents a unit fraction.",
+      "owned_skill_families": [
+        "identifying the whole",
+        "equal partitioning",
+        "halves/thirds/fourths",
+        "unit fractions",
+        "recognizing unequal shares as invalid"
+      ],
+      "boundary_exclusion": "Does not primarily cover comparing fraction magnitudes or equivalence among different fractions.",
+      "sample_parent_indicator": "When sharing one item among several people, does your child understand that the shares must be equal for them to be fair fractional parts?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "RD-02",
+      "family": "MATH_CONTENT",
+      "domain": "Fractions & Decimals",
+      "name": "Fraction as Number & Magnitude",
+      "formal_definition": "Understands fractions as numbers with magnitude that can be located, ordered, and compared.",
+      "owned_skill_families": [
+        "fraction number line",
+        "fraction comparison",
+        "ordering fractions",
+        "fractions greater than one",
+        "benchmark fractions"
+      ],
+      "boundary_exclusion": "Does not cover equal partitioning as the main construct or equivalence transformations.",
+      "sample_parent_indicator": "Can your child usually tell which of two simple fractions is larger by thinking about their size rather than only looking at the numerals?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "RD-03",
+      "family": "MATH_CONTENT",
+      "domain": "Fractions & Decimals",
+      "name": "Fraction Equivalence & Composition",
+      "formal_definition": "Understands that different fractional expressions can denote the same quantity and that fractions can be composed or decomposed.",
+      "owned_skill_families": [
+        "equivalent fractions",
+        "composing unit fractions",
+        "decomposing fractions",
+        "common-unit reasoning",
+        "recognizing multiple representations of the same fraction"
+      ],
+      "boundary_exclusion": "Does not cover basic unit-fraction partitioning or decimal notation.",
+      "sample_parent_indicator": "Does your child understand that two fourths can represent the same amount as one half when they refer to the same whole?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "RD-04",
+      "family": "MATH_CONTENT",
+      "domain": "Fractions & Decimals",
+      "name": "Decimal Place Value & Magnitude",
+      "formal_definition": "Extends base-ten place-value reasoning to quantities less than one and connects decimal notation to magnitude.",
+      "owned_skill_families": [
+        "tenths/hundredths",
+        "decimal place value",
+        "decimal comparison/order",
+        "fraction–decimal connections",
+        "number-line placement of decimals"
+      ],
+      "boundary_exclusion": "Does not cover whole-number place value or fraction equivalence as the main construct.",
+      "sample_parent_indicator": "Can your child explain why 0.7 is larger than 0.65 without treating 65 as automatically larger than 7?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "PA-01",
+      "family": "MATH_CONTENT",
+      "domain": "Patterns & Early Algebra",
+      "name": "Repeating Pattern Structure",
+      "formal_definition": "Recognizes and reasons about a repeating unit that generates a repeating pattern.",
+      "owned_skill_families": [
+        "copying a pattern",
+        "extending a repeating pattern",
+        "identifying the repeat unit",
+        "translating a pattern to another modality",
+        "creating a pattern from a unit"
+      ],
+      "boundary_exclusion": "Does not cover patterns whose values systematically grow or general cross-domain structural noticing.",
+      "sample_parent_indicator": "If a pattern is red-blue-blue, red-blue-blue, can your child identify the smallest part that keeps repeating?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "PA-02",
+      "family": "MATH_CONTENT",
+      "domain": "Patterns & Early Algebra",
+      "name": "Growing Pattern & Functional Change",
+      "formal_definition": "Understands systematic change across successive cases and uses the growth relationship to extend or predict.",
+      "owned_skill_families": [
+        "identifying growth rule",
+        "extending growing patterns",
+        "predicting later cases",
+        "input-output relationships",
+        "tables of change"
+      ],
+      "boundary_exclusion": "Does not cover fixed repeating units or formal equality/unknowns.",
+      "sample_parent_indicator": "If a block pattern grows by 2 each step, can your child use that rule to predict what comes later rather than drawing every earlier step?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "PA-03",
+      "family": "MATH_CONTENT",
+      "domain": "Patterns & Early Algebra",
+      "name": "Equality & Equivalence",
+      "formal_definition": "Understands equality as a relation stating that two quantities or expressions have the same value.",
+      "owned_skill_families": [
+        "balance/equivalence",
+        "true/false equations",
+        "nonstandard equation forms",
+        "equivalent expressions",
+        "missing-side reasoning"
+      ],
+      "boundary_exclusion": "Does not cover unknown-symbol manipulation as the main construct or general argument evaluation.",
+      "sample_parent_indicator": "Does your child understand that 3 + 4 = 5 + 2 can be true even though there is no single “answer after the equals sign”?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "PA-04",
+      "family": "MATH_CONTENT",
+      "domain": "Patterns & Early Algebra",
+      "name": "Unknowns & Relational Expressions",
+      "formal_definition": "Reasons about unspecified quantities and relationships represented by blanks, symbols, or simple equations.",
+      "owned_skill_families": [
+        "missing-value problems",
+        "unknown as placeholder",
+        "simple equations",
+        "input-output rules",
+        "relational expressions"
+      ],
+      "boundary_exclusion": "Does not cover equality alone or pattern growth without an unknown quantity.",
+      "sample_parent_indicator": "If □ + 3 = 8, can your child treat the box as an unknown amount to determine rather than as a signal to start calculating from left to right?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "GS-01",
+      "family": "MATH_CONTENT",
+      "domain": "Geometry & Spatial Reasoning",
+      "name": "Shape Properties & Classification",
+      "formal_definition": "Classifies and reasons about 2D and 3D shapes using defining geometric properties rather than superficial appearance.",
+      "owned_skill_families": [
+        "recognizing shapes across orientation/size",
+        "sides/vertices/faces",
+        "property-based classification",
+        "shape hierarchy",
+        "category/subcategory relations in geometry"
+      ],
+      "boundary_exclusion": "Does not cover general data classification or composing shapes from parts.",
+      "sample_parent_indicator": "If a square is turned like a diamond, does your child still recognize it as a square and explain which properties stayed the same?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "GS-02",
+      "family": "MATH_CONTENT",
+      "domain": "Geometry & Spatial Reasoning",
+      "name": "Shape Composition & Decomposition",
+      "formal_definition": "Understands complex shapes as made from simpler geometric parts and simpler shapes as combinable into new shapes.",
+      "owned_skill_families": [
+        "composing shapes",
+        "decomposing shapes",
+        "substituting equivalent component sets",
+        "partitioning shapes",
+        "recognizing component relationships"
+      ],
+      "boundary_exclusion": "Does not cover number part–whole structure or mental rotation as the main construct.",
+      "sample_parent_indicator": "Can your child combine simple shapes to make a target shape, or identify which smaller shapes make up a larger one?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "GS-03",
+      "family": "MATH_CONTENT",
+      "domain": "Geometry & Spatial Reasoning",
+      "name": "Spatial Relations & Orientation",
+      "formal_definition": "Represents and reasons about locations, directions, and relationships among objects or between self and environment.",
+      "owned_skill_families": [
+        "above/below/inside/beside",
+        "left/right",
+        "route following",
+        "maps",
+        "relative position",
+        "simple coordinate ideas"
+      ],
+      "boundary_exclusion": "Does not cover transforming an object’s orientation or shape properties.",
+      "sample_parent_indicator": "Can your child follow or describe a route using spatial relationships such as left/right, above/below, or between?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "GS-04",
+      "family": "MATH_CONTENT",
+      "domain": "Geometry & Spatial Reasoning",
+      "name": "Spatial Transformation & Visualization",
+      "formal_definition": "Mentally or physically transforms spatial objects and anticipates their resulting orientation or configuration.",
+      "owned_skill_families": [
+        "rotation",
+        "reflection",
+        "translation",
+        "mental imagery",
+        "perspective transformation",
+        "disembedding"
+      ],
+      "boundary_exclusion": "Does not cover static location/orientation vocabulary or shape classification by properties.",
+      "sample_parent_indicator": "Can your child usually predict how a familiar shape will look after it is turned or flipped, without needing to physically move it first?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "ME-01",
+      "family": "MATH_CONTENT",
+      "domain": "Measurement",
+      "name": "Length Reasoning",
+      "formal_definition": "Understands one-dimensional extent and how length can be compared and measured using iterated units.",
+      "owned_skill_families": [
+        "direct/indirect length comparison",
+        "ordering by length",
+        "transitivity",
+        "unit iteration",
+        "zero-point alignment",
+        "ruler use",
+        "perimeter as path length"
+      ],
+      "boundary_exclusion": "Does not cover area/coverage, mass, or visual “overall size.”",
+      "sample_parent_indicator": "When comparing two objects, does your child know to align the ends rather than judging only by where the far end happens to be?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "ME-02",
+      "family": "MATH_CONTENT",
+      "domain": "Measurement",
+      "name": "Area & Coverage Reasoning",
+      "formal_definition": "Understands two-dimensional coverage and how area can be compared or measured using equal area units.",
+      "owned_skill_families": [
+        "direct/overlay comparison",
+        "covering without gaps/overlaps",
+        "equal area units",
+        "rows/columns",
+        "rectangular area structure"
+      ],
+      "boundary_exclusion": "Does not cover length/perimeter, volume, or vague visual size.",
+      "sample_parent_indicator": "If one rectangle is longer but much thinner, can your child avoid assuming it automatically has more area?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "ME-03",
+      "family": "MATH_CONTENT",
+      "domain": "Measurement",
+      "name": "Capacity & Volume Reasoning",
+      "formal_definition": "Understands amount contained and three-dimensional space, including comparison and measurement with equal units.",
+      "owned_skill_families": [
+        "capacity comparison",
+        "pouring/filling",
+        "volume packing",
+        "equal volume units",
+        "3D arrays",
+        "distinguishing container shape from amount held"
+      ],
+      "boundary_exclusion": "Does not cover area/coverage or mass/heaviness.",
+      "sample_parent_indicator": "If two differently shaped containers hold the same amount, can your child understand that one is not automatically “more” just because it is taller?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "ME-04",
+      "family": "MATH_CONTENT",
+      "domain": "Measurement",
+      "name": "Mass Reasoning",
+      "formal_definition": "Understands heaviness as a measurable attribute distinct from visual size or volume.",
+      "owned_skill_families": [
+        "direct balance comparison",
+        "ordering by mass",
+        "standard/nonstandard mass units",
+        "estimation",
+        "distinguishing mass from size"
+      ],
+      "boundary_exclusion": "Does not cover capacity/volume or general comparison without the mass attribute.",
+      "sample_parent_indicator": "Does your child understand that a smaller-looking object can still be heavier than a larger-looking one?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "ME-05",
+      "family": "MATH_CONTENT",
+      "domain": "Measurement",
+      "name": "Time & Duration Reasoning",
+      "formal_definition": "Understands temporal order, duration, and measurement of elapsed or calendar time.",
+      "owned_skill_families": [
+        "before/after",
+        "sequence of events",
+        "duration comparison",
+        "clock reading",
+        "elapsed time",
+        "calendar structure"
+      ],
+      "boundary_exclusion": "Does not cover number sequence/order unless it is specifically used to represent time.",
+      "sample_parent_indicator": "Can your child compare how long two familiar activities take rather than only knowing which one happens first?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "ME-06",
+      "family": "MATH_CONTENT",
+      "domain": "Measurement",
+      "name": "Angle & Turn Reasoning",
+      "formal_definition": "Understands angle as an amount of turn or opening and compares/measures that attribute independently of line length.",
+      "owned_skill_families": [
+        "turn amount",
+        "angle comparison",
+        "right-angle benchmark",
+        "angle measurement",
+        "orientation changes"
+      ],
+      "boundary_exclusion": "Does not cover length of rays/segments or general spatial rotation without angle magnitude.",
+      "sample_parent_indicator": "If two angles have arms of different lengths, can your child focus on how open the angles are rather than which arms look longer?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "DC-01",
+      "family": "MATH_CONTENT",
+      "domain": "Data & Chance",
+      "name": "Classification & Categorical Organization",
+      "formal_definition": "Organizes objects or cases into categories using explicit attributes and can reorganize them under different valid rules.",
+      "owned_skill_families": [
+        "same/different",
+        "single-attribute sorting",
+        "choosing a sorting rule",
+        "re-sorting",
+        "multiple attributes",
+        "category/subcategory organization"
+      ],
+      "boundary_exclusion": "Does not cover geometric shape classification specifically or graphical representation of collected data.",
+      "sample_parent_indicator": "Can your child sort the same objects in more than one sensible way, such as first by color and then by type?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "DC-02",
+      "family": "MATH_CONTENT",
+      "domain": "Data & Chance",
+      "name": "Data Representation",
+      "formal_definition": "Converts categorized observations or measurements into organized external representations.",
+      "owned_skill_families": [
+        "tallies",
+        "tables",
+        "picture graphs",
+        "bar graphs",
+        "scales/keys",
+        "mapping observations to marks or symbols"
+      ],
+      "boundary_exclusion": "Does not cover interpreting conclusions from a graph as the primary capability.",
+      "sample_parent_indicator": "Can your child turn a small collection of observations into a simple table, tally, or picture graph that preserves the counts?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "DC-03",
+      "family": "MATH_CONTENT",
+      "domain": "Data & Chance",
+      "name": "Data Interpretation & Comparison",
+      "formal_definition": "Extracts, compares, and reasons from information represented in tables, charts, and simple data displays.",
+      "owned_skill_families": [
+        "reading values",
+        "comparing categories",
+        "finding most/least",
+        "differences between categories",
+        "simple trend/conclusion",
+        "answering questions from displays"
+      ],
+      "boundary_exclusion": "Does not cover constructing the representation itself or probability/uncertainty.",
+      "sample_parent_indicator": "Given a simple chart, can your child answer questions such as which category has more and how many more?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "DC-04",
+      "family": "MATH_CONTENT",
+      "domain": "Data & Chance",
+      "name": "Chance & Probability Reasoning",
+      "formal_definition": "Reasons about uncertainty and relative likelihood of possible outcomes.",
+      "owned_skill_families": [
+        "impossible/certain/possible",
+        "more/less likely",
+        "simple sample spaces",
+        "fairness",
+        "experimental frequency as evidence"
+      ],
+      "boundary_exclusion": "Does not cover deterministic pattern prediction or interpreting ordinary frequency charts.",
+      "sample_parent_indicator": "Can your child explain why drawing a red block is more likely when a bag contains many red blocks and only one blue block?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MT-01",
+      "family": "MATH_THINKING",
+      "domain": "Mathematical Thinking",
+      "name": "Problem Representation & Modeling",
+      "formal_definition": "Transforms a mathematical situation into a useful representation and interprets mathematical representations back in context.",
+      "owned_skill_families": [
+        "identifying relevant quantities",
+        "drawing/acting/modeling a situation",
+        "story-to-equation",
+        "equation-to-story",
+        "diagram-to-symbol",
+        "checking model against context"
+      ],
+      "boundary_exclusion": "Does not own the specific arithmetic/geometry content being represented; it is cross-domain representation competence.",
+      "sample_parent_indicator": "When facing a new word problem, does your child often make a useful drawing, object model, number sentence, or other representation rather than guessing from keywords?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MT-02",
+      "family": "MATH_THINKING",
+      "domain": "Mathematical Thinking",
+      "name": "Strategy Planning & Mathematical Adaptation",
+      "formal_definition": "Chooses, sequences, and modifies mathematical approaches based on the structure of a problem.",
+      "owned_skill_families": [
+        "choosing an approach",
+        "breaking a problem into parts",
+        "using a simpler case",
+        "changing mathematical strategy",
+        "selecting efficient representation",
+        "planning multi-step work"
+      ],
+      "boundary_exclusion": "Does not cover awareness of one’s own learning state; that belongs to metacognition.",
+      "sample_parent_indicator": "When the first mathematical approach is awkward, can your child often choose a different mathematical method that fits the problem better?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MT-03",
+      "family": "MATH_THINKING",
+      "domain": "Mathematical Thinking",
+      "name": "Structural Noticing & Generalization",
+      "formal_definition": "Identifies invariant mathematical relationships across examples and formulates a broader structure or rule.",
+      "owned_skill_families": [
+        "noticing common structure",
+        "finding invariants",
+        "aligning examples",
+        "generalizing a relationship",
+        "detecting regularity",
+        "creating another instance of the same structure"
+      ],
+      "boundary_exclusion": "Does not cover repeating/growing patterns as content unless the key issue is cross-example structural abstraction.",
+      "sample_parent_indicator": "After seeing several differently presented problems with the same underlying idea, can your child notice and describe what is mathematically the same?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MT-04",
+      "family": "MATH_THINKING",
+      "domain": "Mathematical Thinking",
+      "name": "Mathematical Justification & Critique",
+      "formal_definition": "Evaluates whether a mathematical claim or reasoning is valid and supports judgments with mathematical reasons or counterexamples.",
+      "owned_skill_families": [
+        "explaining why",
+        "checking plausibility",
+        "finding an error",
+        "critiquing another solution",
+        "counterexamples",
+        "comparing arguments"
+      ],
+      "boundary_exclusion": "Does not require polished communication skill; the target is mathematical validity and justification.",
+      "sample_parent_indicator": "If a character says “2 + 3 = 4,” can your child decide whether it is right and give a mathematical reason or correction?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MT-05",
+      "family": "MATH_THINKING",
+      "domain": "Mathematical Thinking",
+      "name": "Transfer & Analogy",
+      "formal_definition": "Recognizes a previously learned mathematical relationship in a new representation, context, or surface form and applies it appropriately.",
+      "owned_skill_families": [
+        "near transfer",
+        "representation transfer",
+        "story/symbol/object transfer",
+        "analogical mapping",
+        "applying known structure in a novel context"
+      ],
+      "boundary_exclusion": "Does not mean merely repeating the same skill with different numbers; the context or representation must meaningfully change.",
+      "sample_parent_indicator": "Can your child use an idea learned with objects in a different setting, such as recognizing the same part–whole relation in a story or equation?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MC-01",
+      "family": "METACOGNITION",
+      "domain": "Metacognition",
+      "name": "Understanding & Uncertainty Monitoring",
+      "formal_definition": "Notices and differentiates knowing, uncertainty, confusion, and guessing during mathematical activity.",
+      "owned_skill_families": [
+        "confidence monitoring",
+        "recognizing confusion",
+        "distinguishing guess from knowledge",
+        "deciding an answer needs checking",
+        "noticing mismatch between result and expectation"
+      ],
+      "boundary_exclusion": "Does not cover mathematical plausibility itself; that is MT-04. This capability concerns awareness of one’s own certainty.",
+      "sample_parent_indicator": "When unsure about a math answer, does your child usually recognize that uncertainty rather than confidently treating a guess as known?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MC-02",
+      "family": "METACOGNITION",
+      "domain": "Metacognition",
+      "name": "Strategy Awareness & Progress Monitoring",
+      "formal_definition": "Notices what strategy is being used and whether progress toward a mathematical solution is working.",
+      "owned_skill_families": [
+        "recognizing own strategy",
+        "naming/describing strategy",
+        "noticing being stuck",
+        "monitoring intermediate progress",
+        "noticing own error while working"
+      ],
+      "boundary_exclusion": "Does not cover selecting the mathematically best strategy itself; selection quality is MT-02, awareness of one’s use is metacognitive.",
+      "sample_parent_indicator": "After solving a problem, can your child usually tell you what they tried or how they got the answer, even in simple words?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MC-03",
+      "family": "METACOGNITION",
+      "domain": "Metacognition",
+      "name": "Learning Regulation & Strategy Switching",
+      "formal_definition": "Takes an appropriate learning action when current understanding or approach is insufficient.",
+      "owned_skill_families": [
+        "asking for a hint",
+        "switching approach after noticing difficulty",
+        "re-reading/rechecking",
+        "choosing another representation",
+        "slowing down",
+        "returning to an earlier idea"
+      ],
+      "boundary_exclusion": "Does not cover the mathematical merits of the replacement strategy itself; it concerns regulation in response to monitoring.",
+      "sample_parent_indicator": "When your child realizes a method is not working, do they often try a different approach, ask for a useful hint, or check their work instead of only repeating the same step?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    },
+    {
+      "capability_id": "MC-04",
+      "family": "METACOGNITION",
+      "domain": "Metacognition",
+      "name": "Reflection, Review & Consolidation",
+      "formal_definition": "Reconstructs a recent learning experience, identifies the important idea or strategy, and organizes what changed in understanding.",
+      "owned_skill_families": [
+        "recalling process",
+        "identifying key idea",
+        "summarizing what was learned",
+        "comparing old/new approaches",
+        "reflecting on an error",
+        "identifying what to remember next time"
+      ],
+      "boundary_exclusion": "Does not score general speaking/communication quality; verbal, visual, or action-based reflection can all count.",
+      "sample_parent_indicator": "After a math activity, can your child usually tell or show you one important thing they learned or a strategy that helped?",
+      "status": "DRAFT",
+      "ontology_version": "0.1"
+    }
+  ]
+}
